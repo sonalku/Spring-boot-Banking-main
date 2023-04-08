@@ -1,0 +1,31 @@
+How can I help you , please Specify 
+
+INPUT => BANKING, OTHER SERVICES, STATEMENT, CARDS, ACCOUNT
+
+OUT=> 
+BANKING
+	1. Show Transactions
+	2. Check Balance
+	3. Last Transaction
+	4. Credit Card Limit
+	5. Pending Bill
+	6. Send Money -- Multi Authentication 
+		a. Select Payee from below 
+			i. Payee1
+			ii. Payee2
+			iii. Payye3
+		b. Mention Amount =  200
+		c. If (Check Balance >200) = DEBIT
+			i. Please confirm with Secrete Code 
+			ii. Amount Debit return Success message = 
+		d. Else Insufficient Balance 
+
+OTHER SERVICES
+	1. Change Address
+	2. Check Status
+	3. Get Check book
+	4. Block Card
+	5. Change PIN
+
+STATEMENT
+Get Statement
