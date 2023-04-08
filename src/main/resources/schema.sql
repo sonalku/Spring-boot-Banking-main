@@ -10,6 +10,16 @@ CREATE TABLE online_bank.account (
     UNIQUE (sort_code, account_number)
 );
 
+CREATE TABLE online_bank.cards (
+    id bigint NOT NULL PRIMARY KEY,
+    account_number CHAR(8) NOT NULL,
+	card_type VARCHAR(8) NOT NULL,
+    current_balance NUMERIC(10,3) NOT NULL,
+    card_number VARCHAR(50) NOT NULL,
+    card_limit NUMERIC(10,3),
+	billing_date timestamp NOT NULL
+);
+
 CREATE SEQUENCE online_bank.transaction_sequence START WITH 5;
 CREATE TABLE online_bank.transaction (
     id bigint NOT NULL PRIMARY KEY,
