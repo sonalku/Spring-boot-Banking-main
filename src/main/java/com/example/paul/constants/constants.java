@@ -55,11 +55,11 @@ public class constants {
 	
 	public static final String WRONG_INPUT_OPTIONS_MESSAGE = "PLEASE INPUT CORRECT CHOICE FROM GIVEN OPTIONS";
     
-    public static final List<String> OPTIONS = new ArrayList<String>(Arrays.asList(BANKING,OTHER_SERVICES,STATEMENT,CARDS,ACCOUNT));
-    public static final List<String> BANKING_OPTIONS = new ArrayList<String>(Arrays.asList(SHOW_TRANSACTION,CHECK_BALANCE,LAST_TRANSACTION,SEND_MONEY));
+    public static final List<String> OPTIONS = new ArrayList<String>(Arrays.asList(OTHER_SERVICES,STATEMENT,CARDS,ACCOUNT));
+    public static final List<String> ACCOUNT_OPTIONS = new ArrayList<String>(Arrays.asList(SHOW_BANALCE,SHOW_TRANSACTION,CHECK_BALANCE,LAST_TRANSACTION,SEND_MONEY));
     public static final List<String> OTHER_SERVICES_OPTIONS = new ArrayList<String>(Arrays.asList(CHANGE_ADDRESS,CHECK_STATUS,REQUEST_CHECK_BOOK,BLOCK_CARD,CHANGE_PIN));
     public static final List<String> STATEMENTS_OPTIONS = new ArrayList<String>(Arrays.asList(GET_STATEMENT));
     public static final List<String> CARDS_OPTIONS = new ArrayList<String>(Arrays.asList(CARD_LIMIT,PENDING_BILL));
-    public static final List<String> ACCOUNT_OPTIONS = new ArrayList<String>(Arrays.asList(SHOW_BANALCE));
+    //public static final List<String> ACCOUNT_OPTIONS = new ArrayList<String>(Arrays.asList(SHOW_BANALCE));
     public static final List<String> WRONG_INPUT_OPTIONS = new ArrayList<String>(Arrays.asList(WRONG_INPUT_OPTIONS_MESSAGE));
 }

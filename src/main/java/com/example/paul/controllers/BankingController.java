@@ -31,7 +31,6 @@ public class BankingController {
     		) {
         LOGGER.debug("Triggered AccountRestController.accountInput");  
         switch (inputValue) {
-		case constants.BANKING : return new ResponseEntity<List<String>>(constants.BANKING_OPTIONS,HttpStatus.OK);
 		case constants.OTHER_SERVICES : return new ResponseEntity<List<String>>(constants.OTHER_SERVICES_OPTIONS,HttpStatus.OK);
 		case constants.STATEMENT : return new ResponseEntity<List<String>>(constants.STATEMENTS_OPTIONS,HttpStatus.OK);
 		case constants.CARDS : return new ResponseEntity<List<String>>(constants.CARDS_OPTIONS,HttpStatus.OK);
