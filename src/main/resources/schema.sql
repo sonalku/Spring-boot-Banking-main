@@ -20,3 +20,10 @@ CREATE TABLE online_bank.transaction (
     amount NUMERIC(10,3) NOT NULL,
     transaction_date timestamp NOT NULL
 );
+
+CREATE TABLE online_bank.payee (
+    id bigint NOT NULL PRIMARY KEY,
+    payee_name CHAR(30) NOT NULL,
+    account_number NUMERIC(10,3) NOT NULL,
+    bank_name VARCHAR(50) NOT NULL,
+);
