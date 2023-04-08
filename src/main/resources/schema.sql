@@ -13,14 +13,10 @@ CREATE TABLE online_bank.account (
 CREATE SEQUENCE online_bank.transaction_sequence START WITH 5;
 CREATE TABLE online_bank.transaction (
     id bigint NOT NULL PRIMARY KEY,
-    source_account_id bigint NOT NULL REFERENCES online_bank.account(id),
-    target_account_id bigint NOT NULL REFERENCES online_bank.account(id),
+    debitor_account_id bigint NOT NULL REFERENCES online_bank.account(id),
+    creditor_account_id bigint NOT NULL REFERENCES online_bank.account(id),
     -- Partially denormalize for performance
-    target_owner_name varchar(50) NOT NULL,
+    beneficiary_owner_name varchar(50) NOT NULL,
     amount NUMERIC(10,3) NOT NULL,
-    initiation_date timestamp NOT NULL,
-    completion_date TIMESTAMP,
-    reference VARCHAR(255),
-    latitude REAL,
-    longitude REAL
+    transaction_date timestamp NOT NULL
 );

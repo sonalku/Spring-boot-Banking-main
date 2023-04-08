@@ -26,7 +26,7 @@ public class AccountService {
 
         account.ifPresent(value ->
                 value.setTransactions(transactionRepository
-                        .findBySourceAccountIdOrderByInitiationDate(value.getId())));
+                        .findByDebitorAccountId(value.getId())));
 
         return account.orElse(null);
     }

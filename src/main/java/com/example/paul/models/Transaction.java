@@ -3,7 +3,6 @@ package com.example.paul.models;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-// TODO Add support for Bank charges, currency conversion, setup repeat payment/ standing order
 @Entity
 @Table(name = "transaction", schema = "online_bank")
 
@@ -15,97 +14,75 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transaction_seq")
     private long id;
 
-    private long sourceAccountId;
+    private long debitorAccountId;
 
-    private long targetAccountId;
+    private long creditorAccountId;
 
-    private String targetOwnerName;
+    private String beneficiaryOwnerName;
 
     private double amount;
 
-    private LocalDateTime initiationDate;
-
-    private LocalDateTime completionDate;
-
-    private String reference;
-
-    private Double latitude;
-
-    private Double longitude;
+    private LocalDateTime transactionDate;
 
     public Transaction() {}
 
     public long getId() {
         return id;
     }
+
     public void setId(long id) {
         this.id = id;
     }
-    public long getSourceAccountId() {
-        return sourceAccountId;
+
+    public long getDebitorAccountId() {
+        return debitorAccountId;
     }
-    public void setSourceAccountId(long sourceAccountId) {
-        this.sourceAccountId = sourceAccountId;
+
+    public void setDebitorAccountId(long debitorAccountId) {
+        this.debitorAccountId = debitorAccountId;
     }
-    public long getTargetAccountId() {
-        return targetAccountId;
+
+    public long getCreditorAccountId() {
+        return creditorAccountId;
     }
-    public void setTargetAccountId(long targetAccountId) {
-        this.targetAccountId = targetAccountId;
+
+    public void setCreditorAccountId(long creditorAccountId) {
+        this.creditorAccountId = creditorAccountId;
     }
-    public String getTargetOwnerName() {
-        return targetOwnerName;
+
+    public String getBeneficiaryOwnerName() {
+        return beneficiaryOwnerName;
     }
-    public void setTargetOwnerName(String targetOwnerName) {
-        this.targetOwnerName = targetOwnerName;
+
+    public void setBeneficiaryOwnerName(String beneficiaryOwnerName) {
+        this.beneficiaryOwnerName = beneficiaryOwnerName;
     }
+
     public double getAmount() {
         return amount;
     }
+
     public void setAmount(double amount) {
         this.amount = amount;
     }
-    public LocalDateTime getInitiationDate() {
-        return initiationDate;
+
+    public LocalDateTime getTransactionDate() {
+        return transactionDate;
     }
-    public void setInitiationDate(LocalDateTime initiationDate) {
-        this.initiationDate = initiationDate;
-    }
-    public LocalDateTime getCompletionDate() {
-        return completionDate;
-    }
-    public void setCompletionDate(LocalDateTime completionDate) {
-        this.completionDate = completionDate;
-    }
-    public String getReference() {
-        return reference;
-    }
-    public void setReference(String reference) {
-        this.reference = reference;
-    }
-    public Double getLatitude() {
-        return latitude;
-    }
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-    public Double getLongitude() {
-        return longitude;
-    }
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
+
+    public void setTransactionDate(LocalDateTime transactionDate) {
+        this.transactionDate = transactionDate;
     }
 
     @Override
     public String toString() {
         return "Transaction{" +
-                "sourceAccountId=" + sourceAccountId +
-                ", targetAccountId=" + targetAccountId +
-                ", targetOwnerName='" + targetOwnerName + '\'' +
+                "id=" + id +
+                ", debitorAccountId=" + debitorAccountId +
+                ", creditorAccountId=" + creditorAccountId +
+                ", beneficiaryOwnerName='" + beneficiaryOwnerName + '\'' +
                 ", amount=" + amount +
-                ", initiationDate=" + initiationDate +
-                ", completionDate=" + completionDate +
-                ", reference='" + reference + '\'' +
+                ", transactionDate=" + transactionDate +
                 '}';
     }
 }

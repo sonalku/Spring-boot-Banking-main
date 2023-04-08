@@ -37,14 +37,10 @@ public class TransactionService {
                 var transaction = new Transaction();
 
                 transaction.setAmount(transactionInput.getAmount());
-                transaction.setSourceAccountId(sourceAccount.get().getId());
-                transaction.setTargetAccountId(targetAccount.get().getId());
-                transaction.setTargetOwnerName(targetAccount.get().getOwnerName());
-                transaction.setInitiationDate(LocalDateTime.now());
-                transaction.setCompletionDate(LocalDateTime.now());
-                transaction.setReference(transactionInput.getReference());
-                transaction.setLatitude(transactionInput.getLatitude());
-                transaction.setLongitude(transactionInput.getLongitude());
+                transaction.setDebitorAccountId(sourceAccount.get().getId());
+                transaction.setCreditorAccountId(targetAccount.get().getId());
+                transaction.setBeneficiaryOwnerName(targetAccount.get().getOwnerName());
+                transaction.setTransactionDate(LocalDateTime.now());
 
                 updateAccountBalance(sourceAccount.get(), transactionInput.getAmount(), ACTION.WITHDRAW);
                 transactionRepository.save(transaction);
