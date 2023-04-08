@@ -54,7 +54,12 @@ public class constants {
 	public static final String GET_STATEMENT = "GET STATEMENT";
 	
 	public static final String WRONG_INPUT_OPTIONS_MESSAGE = "PLEASE INPUT CORRECT CHOICE FROM GIVEN OPTIONS";
-    
+    public static final String TRANSACTION_1 = "TRANSACTION ID 012 FOR AMOUNT 100 HAS BEEN CREDITED TO ACCOUNT 57778952 FROM DEBITED ACCOUNT 12345678 ON 6th APRIL";
+    public static final String TRANSACTION_2 = "TRANSACTION ID 101 FOR AMOUNT 500 HAS BEEN CREDITED TO ACCOUNT 99881088 FROM DEBITED ACCOUNT 12345678 ON 5th APRIL";
+    public static final String TRANSACTION_3 = "TRANSACTION ID 101 FOR AMOUNT 200 HAS BEEN CREDITED TO ACCOUNT 99881088 FROM DEBITED ACCOUNT 12345678 ON 15th May";
+
+    public static final String BALANCE = "ACCOUNT HAS BALANCE OF 3,00,000,00";
+
     public static final List<String> OPTIONS = new ArrayList<String>(Arrays.asList(OTHER_SERVICES,STATEMENT,CARDS,ACCOUNT));
     public static final List<String> ACCOUNT_OPTIONS = new ArrayList<String>(Arrays.asList(SHOW_BANALCE,SHOW_TRANSACTION,CHECK_BALANCE,LAST_TRANSACTION,SEND_MONEY));
     public static final List<String> OTHER_SERVICES_OPTIONS = new ArrayList<String>(Arrays.asList(CHANGE_ADDRESS,CHECK_STATUS,REQUEST_CHECK_BOOK,BLOCK_CARD,CHANGE_PIN));
@@ -62,4 +67,15 @@ public class constants {
     public static final List<String> CARDS_OPTIONS = new ArrayList<String>(Arrays.asList(CARD_LIMIT,PENDING_BILL));
     //public static final List<String> ACCOUNT_OPTIONS = new ArrayList<String>(Arrays.asList(SHOW_BANALCE));
     public static final List<String> WRONG_INPUT_OPTIONS = new ArrayList<String>(Arrays.asList(WRONG_INPUT_OPTIONS_MESSAGE));
+
+    //SHOW_TRANSACTION --> Will show list of transactions i.e TRANSACTION_LIST
+    public static final List<String> TRANSACTION_LIST = new ArrayList<String>(Arrays.asList(TRANSACTION_1,TRANSACTION_2,TRANSACTION_3));
+
+    //SHOW_BANALCE --> Will show account balance
+    public static final List<String> ACCOUNT_BALANCE = new ArrayList<String>(Arrays.asList(BALANCE));
+
+    public static final String TRANSACTION = "YOUR TRANSACTION ID 101 IS FOR AMOUNT 200 WHICH WAS CREDITED TO ACCOUNT 99881088 FROM DEBITED ACCOUNT 12345678 ON 15th May";
+    //
+    public static final List<String> TRANSACTIONS = new ArrayList<String>(Arrays.asList(TRANSACTION));
+
 }
