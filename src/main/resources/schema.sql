@@ -24,6 +24,6 @@ CREATE TABLE online_bank.transaction (
 CREATE TABLE online_bank.payee (
     id bigint NOT NULL PRIMARY KEY,
     payee_name CHAR(30) NOT NULL,
-    account_number NUMERIC(10,3) NOT NULL,
-    bank_name VARCHAR(50) NOT NULL,
+    account_number CHAR(8) NOT NULL,
+    bank_name VARCHAR(50) NOT NULL
 );
