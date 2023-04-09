@@ -6,6 +6,7 @@ import com.hack.bank.models.Account;
 import com.hack.bank.models.Transaction;
 import com.hack.bank.services.AccountService;
 import com.hack.bank.services.TransactionService;
+import com.hack.bank.services.TypeService;
 import com.hack.bank.utils.DepositInput;
 import com.hack.bank.utils.InputValidator;
 import com.hack.bank.utils.TransactionInput;
@@ -35,6 +36,8 @@ public class TransactionController {
 
     private final AccountService accountService;
     private final TransactionService transactionService;
+    @Autowired
+    private TypeService typeService;
 
     @Autowired
     public TransactionController(AccountService accountService, TransactionService transactionService) {
@@ -95,11 +98,27 @@ public class TransactionController {
         return errors;
     }
 
-    @GetMapping(value = "/account/lastTransaction")
+    @GetMapping(value = "/account/getLastTransaction")
     public ResponseEntity<Transaction> getLastTransaction(
-            @RequestParam(name = "accountNumber", required = true) String accountNumber
-    ){
-        return transactionService.getLastTransaction(accountNumber);
+            @RequestParam(name = "accountNumber", required = true) String accountNumber){
+        return new ResponseEntity<Transaction>(transactionService.getLastTransaction(accountNumber),HttpStatus.OK);
+    }
+    @GetMapping(value = "/account/lastTransactionForVoive")
+    public ResponseEntity<String> lastTransactionForVoive(
+            @RequestParam(name = "accountNumber", required = true) String accountNumber){
+            Transaction lastTransaction = transactionService.getLastTransaction(accountNumber);
+            StringBuilder builder = new StringBuilder();
+            builder.append("Your Last Transaction is Transaction Number")
+                    .append(lastTransaction.getId())
+                    .append("Is Debited From Account Number")
+                    .append(lastTransaction.getAccountNumber())
+                    .append("Amount")
+                    .append(lastTransaction.getAmount())
+                    .append("To Beneficiary")
+                    .append(lastTransaction.getBeneficiaryName())
+                    .append("On")
+                    .append(lastTransaction.getTransactionDate());
+            return new ResponseEntity<String>(builder.toString(),HttpStatus.OK);
     }
 
     @GetMapping(value = "/account/transactions")
