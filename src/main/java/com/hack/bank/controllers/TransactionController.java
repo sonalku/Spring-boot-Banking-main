@@ -1,11 +1,14 @@
 package com.hack.bank.controllers;
 
 import com.hack.bank.constants.ACTION;
+import com.hack.bank.constants.Constants;
 import com.hack.bank.models.Account;
 import com.hack.bank.models.Transaction;
 import com.hack.bank.services.AccountService;
 import com.hack.bank.services.TransactionService;
-import com.hack.bank.utils.*;
+import com.hack.bank.utils.DepositInput;
+import com.hack.bank.utils.InputValidator;
+import com.hack.bank.utils.TransactionInput;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.hack.bank.constants.Constants.*;
@@ -51,35 +55,6 @@ public class TransactionController {
             return new ResponseEntity<>(INVALID_TRANSACTION, HttpStatus.BAD_REQUEST);
         }
     }
-
-    /*@PostMapping(value = "/withdraw",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    *//*public ResponseEntity<?> withdraw(
-            @Valid @RequestBody WithdrawInput withdrawInput) {
-        LOGGER.debug("Triggered AccountRestController.withdrawInput");
-
-        // Validate input
-        if (InputValidator.isSearchCriteriaValid(withdrawInput)) {
-            // Attempt to retrieve the account information
-            Account account = accountService.getAccount(
-                    withdrawInput.getIfscCode(), withdrawInput.getAccountNumber());
-
-            // Return the account details, or warn that no account was found for given input
-            if (account == null) {
-                return new ResponseEntity<>(NO_ACCOUNT_FOUND, HttpStatus.OK);
-            } else {
-                if (transactionService.isAmountAvailable(withdrawInput.getAmount(), account.getCurrentBalance())) {
-                    transactionService.updateAccountBalance(account, withdrawInput.getAmount(), ACTION.WITHDRAW);
-                    return new ResponseEntity<>(SUCCESS, HttpStatus.OK);
-                }
-                return new ResponseEntity<>(INSUFFICIENT_ACCOUNT_BALANCE, HttpStatus.OK);
-            }
-        } else {
-            return new ResponseEntity<>(INVALID_SEARCH_CRITERIA, HttpStatus.BAD_REQUEST);
-        }
-    }*/
-
 
     @PostMapping(value = "/deposit",
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -125,5 +100,14 @@ public class TransactionController {
             @RequestParam(name = "accountNumber", required = true) String accountNumber
     ){
         return transactionService.getLastTransaction(accountNumber);
+    }
+
+    @GetMapping(value = "/account/transactions")
+    public ResponseEntity<List<Transaction>> getTransactions(@RequestParam(name = "accountNumber", required = true) String accountNumber,
+                                                                @RequestParam(name = "operation", required = true) String operation){
+            if(SHOW_TRANSACTION.equals(operation)) {
+                return transactionService.getTransactions(accountNumber);
+            }else return null;
+
     }
 }

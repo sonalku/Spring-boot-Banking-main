@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -69,5 +70,10 @@ public class TransactionService {
         Transaction lastTransaction = transactionRepository.findFirstByAccountNumberOrderByTransactionDateDesc(accountNumber).get();
         //findFirstByOrderByIdDesc
         return new ResponseEntity<Transaction>(lastTransaction, HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<Transaction>> getTransactions(String accountNumber) {
+        List<Transaction> lastTransactions = transactionRepository.findFirst10ByAccountNumberOrderByTransactionDateDesc(accountNumber);
+        return new ResponseEntity<>(lastTransactions, HttpStatus.OK);
     }
 }
