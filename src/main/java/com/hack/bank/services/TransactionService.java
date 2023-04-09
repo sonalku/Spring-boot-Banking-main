@@ -12,6 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,7 +56,7 @@ public class TransactionService {
         return false;
     }
 
-     public void updateAccountBalance(Account account, double amount, ACTION action) {
+    public void updateAccountBalance(Account account, double amount, ACTION action) {
         if (action == ACTION.WITHDRAW) {
             account.setCurrentBalance((account.getCurrentBalance() - amount));
         } else if (action == ACTION.DEPOSIT) {
@@ -72,8 +76,22 @@ public class TransactionService {
         return new ResponseEntity<Transaction>(lastTransaction, HttpStatus.OK);
     }
 
-    public ResponseEntity<List<Transaction>> getTransactions(String accountNumber) {
+    public ResponseEntity<List<String>> getTransactions(String accountNumber) {
         List<Transaction> lastTransactions = transactionRepository.findFirst10ByAccountNumberOrderByTransactionDateDesc(accountNumber);
-        return new ResponseEntity<>(lastTransactions, HttpStatus.OK);
+        if (lastTransactions.isEmpty()) {
+            return new ResponseEntity<>(List.of("No Transactions found."), HttpStatus.OK);
+        } else {
+            List<String> transactions = new ArrayList<>();
+            for (Iterator<Transaction> transaction = lastTransactions.iterator();
+                 transaction.hasNext(); ) {
+                Transaction trans = transaction.next();
+                String transactionString = "TRANSACTION ID " + trans.getId() + " For Amount " + trans.getAmount()
+                        + " HAS BEEN CREDITED TO " + trans.getBeneficiaryName() + " ACCOUNT DEBITED FROM ACCOUNT "
+                        + trans.getAccountNumber() + " ON " + trans.getTransactionDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
+                transactions.add(transactionString);
+            }
+            return new ResponseEntity<>(transactions, HttpStatus.OK);
+        }
     }
 }
+
