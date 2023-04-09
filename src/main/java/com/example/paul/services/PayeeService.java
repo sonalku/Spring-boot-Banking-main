@@ -20,4 +20,9 @@ public class PayeeService {
         List<Payee> payees = payeeRepository.findAll();
         return payees;
     }
+
+    public Optional<Payee> getPayeeByName(String payeeName){
+        Optional<Payee> payee = payeeRepository.findByPayeeName(payeeName);
+        return payee;
+    }
 }
