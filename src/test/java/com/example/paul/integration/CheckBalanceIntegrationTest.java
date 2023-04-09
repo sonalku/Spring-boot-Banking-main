@@ -21,7 +21,7 @@ class CheckBalanceIntegrationTest {
     void givenAccountDetails_whenCheckingBalance_thenVerifyAccountCorrect() {
         // given
         var input = new AccountInput();
-        input.setSortCode("53-68-92");
+        input.setIfscCode("53-68-92");
         input.setAccountNumber("73084635");
 
         // when

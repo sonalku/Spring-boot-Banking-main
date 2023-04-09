@@ -21,11 +21,11 @@ class MakeTransferIntegrationTest {
     void givenTransactionDetails_whenMakeTransaction_thenVerifyTransactionIsProcessed() {
         // given
         var sourceAccount = new AccountInput();
-        sourceAccount.setSortCode("53-68-92");
+        sourceAccount.setIfscCode("53-68-92");
         sourceAccount.setAccountNumber("73084635");
 
         var targetAccount = new AccountInput();
-        targetAccount.setSortCode("65-93-37");
+        targetAccount.setIfscCode("65-93-37");
         targetAccount.setAccountNumber("21956204");
 
         var input = new TransactionInput();
@@ -33,8 +33,8 @@ class MakeTransferIntegrationTest {
         input.setTargetAccount(targetAccount);
         input.setAmount(27.5);
         input.setReference("My reference");
-        input.setLatitude(45.0000000);
-        input.setLongitude(90.0000000);
+        //input.setLatitude(45.0000000);
+        //input.setLongitude(90.0000000);
 
         // when
         var body = transactionRestController.makeTransfer(input).getBody();

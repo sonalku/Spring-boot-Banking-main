@@ -55,11 +55,11 @@ class TransactionServiceTest {
     @Test
     void whenTransactionDetails_thenTransferShouldBeDenied() {
         var sourceAccount = new AccountInput();
-        sourceAccount.setSortCode("53-68-92");
+        sourceAccount.setIfscCode("53-68-92");
         sourceAccount.setAccountNumber("78901234");
 
         var targetAccount = new AccountInput();
-        targetAccount.setSortCode("67-41-18");
+        targetAccount.setIfscCode("67-41-18");
         targetAccount.setAccountNumber("48573590");
 
         var input = new TransactionInput();
@@ -76,11 +76,11 @@ class TransactionServiceTest {
     @Test
     void whenTransactionDetailsAndAmountTooLarge_thenTransferShouldBeDenied() {
         var sourceAccount = new AccountInput();
-        sourceAccount.setSortCode("53-68-92");
+        sourceAccount.setIfscCode("53-68-92");
         sourceAccount.setAccountNumber("78901234");
 
         var targetAccount = new AccountInput();
-        targetAccount.setSortCode("67-41-18");
+        targetAccount.setIfscCode("67-41-18");
         targetAccount.setAccountNumber("48573590");
 
         var input = new TransactionInput();

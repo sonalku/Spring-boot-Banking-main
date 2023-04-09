@@ -3,14 +3,20 @@ package com.example.paul.controllers;
 import com.example.paul.constants.Constants;
 import com.example.paul.models.Account;
 import com.example.paul.services.AccountService;
+import com.example.paul.utils.InputValidator;
+import com.example.paul.utils.TransactionInput;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+
+import static com.example.paul.constants.Constants.INVALID_TRANSACTION;
 
 @RestController
 @RequestMapping("api/v1/")
@@ -50,4 +56,27 @@ public class AccountController {
         return null;
     }
 
+    @GetMapping(value = "/account/sendMoney/{accountNumber}/{amount}/{payee}")
+    public ResponseEntity<String> sendMoney(
+            @RequestParam(name = "accountNumber", required = true) String accountNumber,
+            @RequestParam(name = "amount", required = true) double amount,
+            @RequestParam(name = "payee", required = true) String payee
+    ) {
+        LOGGER.debug("Triggered AccountController.getAccountOption");
+        return accountService.sentMoney(accountNumber, amount, payee);
+    }
+
+    @PostMapping(value = "/account/sendMoney",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> makeTransfer(
+            @Valid @RequestBody TransactionInput transactionInput) {
+        if (InputValidator.isSearchTransactionValid(transactionInput)) {
+//            new Thread(() -> transactionService.makeTransfer(transactionInput));
+            boolean isComplete = accountService.makeTransfer(transactionInput);
+            return new ResponseEntity<>(isComplete, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(INVALID_TRANSACTION, HttpStatus.BAD_REQUEST);
+        }
+    }
 }

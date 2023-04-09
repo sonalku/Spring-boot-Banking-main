@@ -22,12 +22,12 @@ public class TransactionService {
 
     public boolean makeTransfer(TransactionInput transactionInput) {
         // TODO refactor synchronous implementation with messaging queue
-        String sourceSortCode = transactionInput.getSourceAccount().getSortCode();
+        String sourceSortCode = transactionInput.getSourceAccount().getIfscCode();
         String sourceAccountNumber = transactionInput.getSourceAccount().getAccountNumber();
         Optional<Account> sourceAccount = accountRepository
                 .findByIfscCodeAndAccountNumber(sourceSortCode, sourceAccountNumber);
 
-        String targetSortCode = transactionInput.getTargetAccount().getSortCode();
+        String targetSortCode = transactionInput.getTargetAccount().getIfscCode();
         String targetAccountNumber = transactionInput.getTargetAccount().getAccountNumber();
         Optional<Account> targetAccount = accountRepository
                 .findByIfscCodeAndAccountNumber(targetSortCode, targetAccountNumber);

@@ -46,7 +46,7 @@ public class AccountRestController {
         if (InputValidator.isSearchCriteriaValid(accountInput)) {
             // Attempt to retrieve the account information
             Account account = accountService.getAccount(
-                    accountInput.getSortCode(), accountInput.getAccountNumber());
+                    accountInput.getIfscCode(), accountInput.getAccountNumber());
 
             // Return the account details, or warn that no account was found for given input
             if (account == null) {

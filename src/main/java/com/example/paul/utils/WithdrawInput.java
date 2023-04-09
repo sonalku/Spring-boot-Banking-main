@@ -12,7 +12,7 @@ public class WithdrawInput extends AccountInput{
     private double amount;
 
     public WithdrawInput() {
-        this.sortCode = super.getSortCode();
+        this.sortCode = super.getIfscCode();
         this.accountNumber = super.getAccountNumber();
     }
 
