@@ -70,10 +70,10 @@ public class TransactionService {
         return (accountBalance - amount) > 0;
     }
 
-    public ResponseEntity<Transaction> getLastTransaction(String accountNumber) {
+    public Transaction getLastTransaction(String accountNumber) {
         Transaction lastTransaction = transactionRepository.findFirstByAccountNumberOrderByTransactionDateDesc(accountNumber).get();
         //findFirstByOrderByIdDesc
-        return new ResponseEntity<Transaction>(lastTransaction, HttpStatus.OK);
+        return lastTransaction;
     }
 
     public ResponseEntity<List<String>> getTransactions(String accountNumber) {
