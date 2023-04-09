@@ -49,7 +49,7 @@ public class constants {
 	public static final String BLOCK_CARD = "BLOCK CARD";
 	public static final String CHANGE_PIN = "CHANGE PIN";
 	
-	public static final String SHOW_BANALCE = "SHOW BANALCE";
+	public static final String SHOW_BALANCE = "SHOW BALANCE";
 	
 	public static final String GET_STATEMENT = "GET STATEMENT";
 	
@@ -61,7 +61,7 @@ public class constants {
     public static final String BALANCE = "ACCOUNT HAS BALANCE OF 3,00,000,00";
 
     public static final List<String> OPTIONS = new ArrayList<String>(Arrays.asList(OTHER_SERVICES,STATEMENT,CARDS,ACCOUNT));
-    public static final List<String> ACCOUNT_OPTIONS = new ArrayList<String>(Arrays.asList(SHOW_BANALCE,SHOW_TRANSACTION,CHECK_BALANCE,LAST_TRANSACTION,SEND_MONEY));
+    public static final List<String> ACCOUNT_OPTIONS = new ArrayList<String>(Arrays.asList(SHOW_BALANCE,SHOW_TRANSACTION,CHECK_BALANCE,LAST_TRANSACTION,SEND_MONEY));
     public static final List<String> OTHER_SERVICES_OPTIONS = new ArrayList<String>(Arrays.asList(CHANGE_ADDRESS,CHECK_STATUS,REQUEST_CHECK_BOOK,BLOCK_CARD,CHANGE_PIN));
     public static final List<String> STATEMENTS_OPTIONS = new ArrayList<String>(Arrays.asList(GET_STATEMENT));
     public static final List<String> CARDS_OPTIONS = new ArrayList<String>(Arrays.asList(CARD_LIMIT,PENDING_BILL));
