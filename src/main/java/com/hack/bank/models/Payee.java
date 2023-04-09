@@ -2,10 +2,7 @@ package com.hack.bank.models;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -15,7 +12,8 @@ import java.util.Objects;
 @AllArgsConstructor
 @ToString
 public class Payee {
-    @Id   @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private  long id;
     String payeeName;
     private String accountNumber;

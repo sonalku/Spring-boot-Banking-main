@@ -17,6 +17,7 @@ public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transaction_seq")
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String beneficiaryName;

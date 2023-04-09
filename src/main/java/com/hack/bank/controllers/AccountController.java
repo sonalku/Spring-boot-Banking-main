@@ -35,7 +35,7 @@ public class AccountController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AccountController.class);
 
-    @PostMapping(value = "/accounts",
+    @GetMapping(value = "/accounts",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> checkAccountBalance(
@@ -52,7 +52,7 @@ public class AccountController {
             if (account == null) {
                 return new ResponseEntity<>(Constants.NO_ACCOUNT_FOUND, HttpStatus.OK);
             } else {
-                return new ResponseEntity<>(account, HttpStatus.OK);
+                return new ResponseEntity<>(account.getCurrentBalance(), HttpStatus.OK);
             }
         } else {
             return new ResponseEntity<>(Constants.INVALID_SEARCH_CRITERIA, HttpStatus.BAD_REQUEST);
@@ -100,6 +100,7 @@ public class AccountController {
     }
 
     //Show Transactions
+/*
     @GetMapping(value = "/account/{inputValue}")
     public ResponseEntity<List<String>> getAccountOption(
             @RequestParam(name = "inputValue", required = true) String inputValue
@@ -114,17 +115,17 @@ public class AccountController {
         }
 
     }
+*/
 
     @GetMapping(value = "/account/balance/")
-    public ResponseEntity<Double> showAccountBalance(
-            @RequestParam(name = "accountNumber", required = true) String accountNumber,
-            @RequestParam(name = "operation", required = true) String operation
+    public ResponseEntity<String> showAccountBalance(
+            @RequestParam(name = "accountNumber", required = true) String accountNumber
     ){
-        if(Constants.SHOW_BALANCE.equals(operation)){
             Account account = accountService.getAccount(accountNumber);
-            return new ResponseEntity<Double>(account.getCurrentBalance(),HttpStatus.OK);
-        }
-        return null;
+            if(null != account)
+                return new ResponseEntity<String>("Your Account Balance is "+account.getCurrentBalance(),HttpStatus.OK);
+            else
+                return new ResponseEntity<>("Account Not found",HttpStatus.NOT_FOUND);
     }
 
     @GetMapping(value = "/account/sendMoney/{accountNumber}/{amount}/{payee}")

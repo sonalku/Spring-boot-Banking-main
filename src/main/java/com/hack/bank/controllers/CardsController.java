@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("api/v1/cards")
 public class CardsController {
 	@Autowired
 	CardsRepository cardsRepository;
@@ -35,16 +35,7 @@ public class CardsController {
 		return new ResponseEntity<List<Cards>>(cards,HttpStatus.OK);
     }
 
-	@GetMapping(value = "/options/{accountNumber}")
-    public ResponseEntity<List<String>> getOptions(
-			@RequestParam(name = "accountNumber", required = true) String inputValue
-	) {
-        LOGGER.debug("Triggered CardsController.accountInput");
-		return null;
-
-	}
-
-	@GetMapping(value = "/card/{accountNumber}")
+	@GetMapping(value = "/{accountNumber}")
 	public ResponseEntity<List<String>> getCardLimitByAccountNumber(
 			@RequestParam(name = "accountNumber", required = true) String accountNumber){
 		Optional<List<Cards>> cards = cardsService.getCardByAccountNumber(accountNumber);

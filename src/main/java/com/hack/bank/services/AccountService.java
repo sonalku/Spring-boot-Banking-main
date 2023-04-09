@@ -68,7 +68,7 @@ public class AccountService {
             transaction.setAmount(amount);
             transaction.setBeneficiaryName(payee);
             transaction.setTransactionDate(LocalDateTime.now());
-
+            transaction.setAccountNumber(accountNumber);
             //updateAccountBalance(sourceAccount.get(), transactionInput.getAmount(), ACTION.WITHDRAW);
             transactionRepository.save(transaction);
 

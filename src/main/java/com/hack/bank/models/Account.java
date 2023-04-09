@@ -2,10 +2,7 @@ package com.hack.bank.models;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 // TODO Add support for multiple account types (business, savings, etc.)
@@ -18,7 +15,8 @@ import java.util.List;
 @ToString
 public class Account {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String ifscCode;
