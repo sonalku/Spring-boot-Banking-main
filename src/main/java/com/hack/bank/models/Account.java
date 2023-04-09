@@ -19,6 +19,8 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    private String accountType;
+
     private String ifscCode;
 
     private String accountNumber;

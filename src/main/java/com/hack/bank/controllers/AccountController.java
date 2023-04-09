@@ -19,6 +19,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -150,6 +151,13 @@ public class AccountController {
         } else {
             return new ResponseEntity<>(INVALID_TRANSACTION, HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping(value = "/account/all")
+    public ResponseEntity<List<Account>> getAllAccounts(){
+        List<Account> accounts = accountService.getAllAccounts();
+        return new ResponseEntity<>(accounts,HttpStatus.OK);
+
     }
 
 }

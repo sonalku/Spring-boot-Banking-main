@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -119,4 +120,8 @@ public class AccountService {
     }
 
 
+    public List<Account> getAllAccounts() {
+        List<Account>  accounts = accountRepository.findAll();
+        return accounts;
+    }
 }

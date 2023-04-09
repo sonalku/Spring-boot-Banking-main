@@ -2,6 +2,7 @@ CREATE SCHEMA online_bank;
 
 CREATE TABLE online_bank.account (
     id bigint NOT NULL PRIMARY KEY,
+    account_type CHAR(15) NOT NULL,
     ifsc_code CHAR(8) NOT NULL,
     account_number CHAR(8) NOT NULL,
     current_balance NUMERIC(10,3) NOT NULL,
