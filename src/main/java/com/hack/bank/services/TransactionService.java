@@ -39,11 +39,9 @@ public class TransactionService {
                 var transaction = new Transaction();
 
                 transaction.setAmount(transactionInput.getAmount());
-                transaction.setDebitorAccountId(sourceAccount.get().getId());
-                transaction.setCreditorAccountId(targetAccount.get().getId());
-                transaction.setBeneficiaryOwnerName(targetAccount.get().getOwnerName());
+                transaction.setBeneficiaryName(targetAccount.get().getOwnerName());
                 transaction.setTransactionDate(LocalDateTime.now());
-
+                transaction.setAccountNumber(sourceAccountNumber);
                 updateAccountBalance(sourceAccount.get(), transactionInput.getAmount(), ACTION.WITHDRAW);
                 transactionRepository.save(transaction);
 

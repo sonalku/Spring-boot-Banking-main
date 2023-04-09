@@ -52,10 +52,10 @@ public class TransactionController {
         }
     }
 
-    @PostMapping(value = "/withdraw",
+    /*@PostMapping(value = "/withdraw",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> withdraw(
+    *//*public ResponseEntity<?> withdraw(
             @Valid @RequestBody WithdrawInput withdrawInput) {
         LOGGER.debug("Triggered AccountRestController.withdrawInput");
 
@@ -78,7 +78,7 @@ public class TransactionController {
         } else {
             return new ResponseEntity<>(INVALID_SEARCH_CRITERIA, HttpStatus.BAD_REQUEST);
         }
-    }
+    }*/
 
 
     @PostMapping(value = "/deposit",

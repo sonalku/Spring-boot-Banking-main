@@ -54,7 +54,7 @@ class AccountServiceTest {
         var transaction2 = new Transaction();
 //        transaction1.setReference("a");
 //        transaction2.setReference("b");
-        when(transactionRepository.findByDebitorAccountId(account.getId()))
+        when(transactionRepository.findByAccountNumber(account.getId()))
                 .thenReturn(List.of(transaction1, transaction2));
 
         var result = underTest.getAccount("53-68-92", "78901234");

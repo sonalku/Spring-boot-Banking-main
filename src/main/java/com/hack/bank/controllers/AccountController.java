@@ -46,8 +46,7 @@ public class AccountController {
         // Validate input
         if (InputValidator.isSearchCriteriaValid(accountInput)) {
             // Attempt to retrieve the account information
-            Account account = accountService.getAccount(
-                    accountInput.getIfscCode(), accountInput.getAccountNumber());
+            Account account = accountService.getAccount(accountInput.getAccountNumber());
 
             // Return the account details, or warn that no account was found for given input
             if (account == null) {
@@ -61,7 +60,7 @@ public class AccountController {
     }
 
 
-    @PutMapping(value = "/accounts",
+   /* @PutMapping(value = "/accounts",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createAccount(
@@ -83,7 +82,7 @@ public class AccountController {
         } else {
             return new ResponseEntity<>(Constants.INVALID_SEARCH_CRITERIA, HttpStatus.BAD_REQUEST);
         }
-    }
+    }*/
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)

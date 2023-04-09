@@ -9,6 +9,6 @@ import java.util.Optional;
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
     // TODO Limit to recent transactions and implement separate endpoint to view old transactions
-    List<Transaction> findByDebitorAccountId(long id);
+    List<Transaction> findByAccountNumber(String accountNumber);
     Optional<Transaction> findFirstByAccountNumberOrderByTransactionDateDesc(String accountNumber);
 }

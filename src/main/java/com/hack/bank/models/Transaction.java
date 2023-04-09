@@ -19,27 +19,11 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transaction_seq")
     private long id;
 
-    private long debitorAccountId;
-
-    private long creditorAccountId;
-
-    private String beneficiaryOwnerName;
+    private String beneficiaryName;
 
     private String accountNumber;
 
     private double amount;
 
     private LocalDateTime transactionDate;
-
-    @Override
-    public String toString() {
-        return "Transaction{" +
-                "id=" + id +
-                ", debitorAccountId=" + debitorAccountId +
-                ", creditorAccountId=" + creditorAccountId +
-                ", beneficiaryOwnerName='" + beneficiaryOwnerName + '\'' +
-                ", amount=" + amount +
-                ", transactionDate=" + transactionDate +
-                '}';
-    }
 }

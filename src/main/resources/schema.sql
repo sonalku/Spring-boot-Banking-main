@@ -23,10 +23,8 @@ CREATE TABLE online_bank.cards (
 CREATE SEQUENCE online_bank.transaction_sequence START WITH 5;
 CREATE TABLE online_bank.transaction (
     id bigint NOT NULL PRIMARY KEY,
-    debitor_account_id bigint NOT NULL REFERENCES online_bank.account(id),
-    creditor_account_id bigint NOT NULL REFERENCES online_bank.account(id),
     -- Partially denormalize for performance
-    beneficiary_owner_name varchar(50) NOT NULL,
+    beneficiary_name varchar(50) NOT NULL,
     account_number CHAR(8) NOT NULL,
     amount NUMERIC(10,3) NOT NULL,
     transaction_date timestamp NOT NULL
