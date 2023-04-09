@@ -15,7 +15,7 @@ VALUES (3, '73084635', 'Raj Patil', 10000.00, '2019-05-27 17:21');
 INSERT INTO online_bank.cards (id, account_number, card_Type, card_Number, current_Balance, billing_Date, card_Limit)
 VALUES (1, '53-68-92', 'CREDIT', '1111-2222-3333-2323', 20000, '2019-05-01 00:00', 50000);
 INSERT INTO online_bank.cards (id, account_number, card_Type, card_Number, current_Balance, billing_Date, card_Limit)
-VALUES (2, '53-68-92', 'DEBIT', '1111-2222-3333-1212', 35000, '2019-05-01 00:00', null);
+VALUES (2, '53-68-92', 'DEBIT', '1111-2222-3333-1212', 35000, '2019-05-01 00:00', 1000);
 
 
 INSERT INTO online_bank.payee(id,payee_name,account_number,ifsc_code,bank_name)
