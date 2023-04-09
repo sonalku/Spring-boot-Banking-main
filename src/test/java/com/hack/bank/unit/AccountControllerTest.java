@@ -1,5 +1,6 @@
 package com.hack.bank.unit;
 
+import com.hack.bank.controllers.AccountController;
 import com.hack.bank.controllers.AccountRestController;
 import com.hack.bank.models.Account;
 import com.hack.bank.services.AccountService;
@@ -17,8 +18,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(AccountRestController.class)
-class AccountRestControllerTest {
+@WebMvcTest(AccountController.class)
+class AccountControllerTest {
 
     @Autowired
     private MockMvc mvc;
