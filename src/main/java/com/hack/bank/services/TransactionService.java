@@ -7,6 +7,8 @@ import com.hack.bank.repositories.AccountRepository;
 import com.hack.bank.repositories.TransactionRepository;
 import com.hack.bank.utils.TransactionInput;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -63,5 +65,11 @@ public class TransactionService {
     // TODO support overdrafts or credit account
     public boolean isAmountAvailable(double amount, double accountBalance) {
         return (accountBalance - amount) > 0;
+    }
+
+    public ResponseEntity<Transaction> getLastTransaction(String accountNumber) {
+        Transaction lastTransaction = transactionRepository.findFirstByAccountNumberOrderByTransactionDateDesc(accountNumber).get();
+        //findFirstByOrderByIdDesc
+        return new ResponseEntity<Transaction>(lastTransaction, HttpStatus.OK);
     }
 }

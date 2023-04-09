@@ -2,6 +2,7 @@ package com.hack.bank.controllers;
 
 import com.hack.bank.constants.ACTION;
 import com.hack.bank.models.Account;
+import com.hack.bank.models.Transaction;
 import com.hack.bank.services.AccountService;
 import com.hack.bank.services.TransactionService;
 import com.hack.bank.utils.*;
@@ -117,5 +118,12 @@ public class TransactionController {
         });
 
         return errors;
+    }
+
+    @GetMapping(value = "/account/lastTransaction")
+    public ResponseEntity<Transaction> getLastTransaction(
+            @RequestParam(name = "accountNumber", required = true) String accountNumber
+    ){
+        return transactionService.getLastTransaction(accountNumber);
     }
 }

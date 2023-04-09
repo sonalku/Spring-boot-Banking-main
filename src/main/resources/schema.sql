@@ -27,6 +27,7 @@ CREATE TABLE online_bank.transaction (
     creditor_account_id bigint NOT NULL REFERENCES online_bank.account(id),
     -- Partially denormalize for performance
     beneficiary_owner_name varchar(50) NOT NULL,
+    account_number CHAR(8) NOT NULL,
     amount NUMERIC(10,3) NOT NULL,
     transaction_date timestamp NOT NULL
 );

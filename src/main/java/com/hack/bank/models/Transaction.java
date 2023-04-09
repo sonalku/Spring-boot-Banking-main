@@ -25,6 +25,8 @@ public class Transaction {
 
     private String beneficiaryOwnerName;
 
+    private String accountNumber;
+
     private double amount;
 
     private LocalDateTime transactionDate;
