@@ -21,13 +21,13 @@ public class InputValidator {
         // TODO Add checks for large amounts; consider past history of account holder and location of transfers
 
         if (!isSearchCriteriaValid(transactionInput.getSourceAccount()))
-            return false;
+            return true;
 
-        if (!isSearchCriteriaValid(transactionInput.getTargetAccount()))
-            return false;
+//        if (!isSearchCriteriaValid(transactionInput.getTargetAccount()))
+//            return false;
 
-        if (transactionInput.getSourceAccount().equals(transactionInput.getTargetAccount()))
-            return false;
+//        if (transactionInput.getSourceAccount().equals(transactionInput.getTargetAccount()))
+//            return false;
 
         return true;
     }
