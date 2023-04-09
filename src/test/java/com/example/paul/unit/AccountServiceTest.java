@@ -35,20 +35,20 @@ class AccountServiceTest {
     @Test
     void shouldReturnAccountBySortCodeAndAccountNumberWhenPresent() {
         var account = new Account(1L, "53-68-92", "78901234", 10.1, "Some Bank", "John");
-        when(accountRepository.findBySortCodeAndAccountNumber("53-68-92", "78901234"))
+        when(accountRepository.findByIfscCodeAndAccountNumber("53-68-92", "78901234"))
                 .thenReturn(Optional.of(account));
 
         var result = underTest.getAccount("53-68-92", "78901234");
 
         assertThat(result.getOwnerName()).isEqualTo(account.getOwnerName());
-        assertThat(result.getSortCode()).isEqualTo(account.getSortCode());
+        assertThat(result.getIfscCode()).isEqualTo(account.getIfscCode());
         assertThat(result.getAccountNumber()).isEqualTo(account.getAccountNumber());
     }
 
     @Test
     void shouldReturnTransactionsForAccount() {
         var account = new Account(1L, "53-68-92", "78901234", 10.1, "Some Bank", "John");
-        when(accountRepository.findBySortCodeAndAccountNumber("53-68-92", "78901234"))
+        when(accountRepository.findByIfscCodeAndAccountNumber("53-68-92", "78901234"))
                 .thenReturn(Optional.of(account));
         var transaction1 = new Transaction();
         var transaction2 = new Transaction();
@@ -65,7 +65,7 @@ class AccountServiceTest {
 
     @Test
     void shouldReturnNullWhenAccountBySortCodeAndAccountNotFound() {
-        when(accountRepository.findBySortCodeAndAccountNumber("53-68-92", "78901234"))
+        when(accountRepository.findByIfscCodeAndAccountNumber("53-68-92", "78901234"))
                 .thenReturn(Optional.empty());
 
         var result = underTest.getAccount("53-68-92", "78901234");

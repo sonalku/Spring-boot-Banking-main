@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class constants {
+public class Constants {
 
     public static final String SUCCESS =
             "Operation completed successfully";

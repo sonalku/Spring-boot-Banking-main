@@ -46,9 +46,9 @@ class TransactionServiceTest {
         var sourceAccount = new Account(1L, "53-68-92", "78901234", 458.1, "Some Bank", "John");
         var targetAccount = new Account(2L, "67-41-18", "48573590", 64.9, "Some Other Bank", "Major");
 
-        when(accountRepository.findBySortCodeAndAccountNumber("53-68-92", "78901234"))
+        when(accountRepository.findByIfscCodeAndAccountNumber("53-68-92", "78901234"))
                 .thenReturn(Optional.of(sourceAccount));
-        when(accountRepository.findBySortCodeAndAccountNumber("67-41-18", "48573590"))
+        when(accountRepository.findByIfscCodeAndAccountNumber("67-41-18", "48573590"))
                 .thenReturn(Optional.of(targetAccount));
     }
 

@@ -25,12 +25,12 @@ public class TransactionService {
         String sourceSortCode = transactionInput.getSourceAccount().getSortCode();
         String sourceAccountNumber = transactionInput.getSourceAccount().getAccountNumber();
         Optional<Account> sourceAccount = accountRepository
-                .findBySortCodeAndAccountNumber(sourceSortCode, sourceAccountNumber);
+                .findByIfscCodeAndAccountNumber(sourceSortCode, sourceAccountNumber);
 
         String targetSortCode = transactionInput.getTargetAccount().getSortCode();
         String targetAccountNumber = transactionInput.getTargetAccount().getAccountNumber();
         Optional<Account> targetAccount = accountRepository
-                .findBySortCodeAndAccountNumber(targetSortCode, targetAccountNumber);
+                .findByIfscCodeAndAccountNumber(targetSortCode, targetAccountNumber);
 
         if (sourceAccount.isPresent() && targetAccount.isPresent()) {
             if (isAmountAvailable(transactionInput.getAmount(), sourceAccount.get().getCurrentBalance())) {

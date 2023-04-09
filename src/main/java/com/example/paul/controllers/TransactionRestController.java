@@ -19,7 +19,7 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.paul.constants.constants.*;
+import static com.example.paul.constants.Constants.*;
 
 @RestController
 @RequestMapping("api/v1")

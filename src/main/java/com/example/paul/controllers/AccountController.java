@@ -1,6 +1,6 @@
 package com.example.paul.controllers;
 
-import com.example.paul.constants.constants;
+import com.example.paul.constants.Constants;
 import com.example.paul.models.Account;
 import com.example.paul.services.AccountService;
 import org.slf4j.Logger;
@@ -29,11 +29,11 @@ public class AccountController {
     ) {
         LOGGER.debug("Triggered AccountController.getAccountOption");
         switch (inputValue) {
-            case constants.SHOW_TRANSACTION: return new ResponseEntity<List<String>>(constants.TRANSACTION_LIST, HttpStatus.OK);
-            case constants.SHOW_BALANCE: return new ResponseEntity<List<String>>(constants.ACCOUNT_BALANCE,HttpStatus.OK);
-            case constants.LAST_TRANSACTION : return new ResponseEntity<List<String>>(constants.TRANSACTIONS,HttpStatus.OK);
+            case Constants.SHOW_TRANSACTION: return new ResponseEntity<List<String>>(Constants.TRANSACTION_LIST, HttpStatus.OK);
+            case Constants.SHOW_BALANCE: return new ResponseEntity<List<String>>(Constants.ACCOUNT_BALANCE,HttpStatus.OK);
+            case Constants.LAST_TRANSACTION : return new ResponseEntity<List<String>>(Constants.TRANSACTIONS,HttpStatus.OK);
             default:
-                return new ResponseEntity<List<String>>(constants.WRONG_INPUT_OPTIONS, HttpStatus.OK);
+                return new ResponseEntity<List<String>>(Constants.WRONG_INPUT_OPTIONS, HttpStatus.OK);
         }
 
     }
@@ -43,7 +43,7 @@ public class AccountController {
             @RequestParam(name = "accountNumber", required = true) String accountNumber,
             @RequestParam(name = "operation", required = true) String operation
     ){
-        if(constants.SHOW_BALANCE.equals(operation)){
+        if(Constants.SHOW_BALANCE.equals(operation)){
             Account account = accountService.getAccount(accountNumber);
             return new ResponseEntity<Double>(account.getCurrentBalance(),HttpStatus.OK);
         }

@@ -22,7 +22,7 @@ public class AccountService {
 
     public Account getAccount(String sortCode, String accountNumber) {
         Optional<Account> account = accountRepository
-                .findBySortCodeAndAccountNumber(sortCode, accountNumber);
+                .findByIfscCodeAndAccountNumber(sortCode, accountNumber);
 
         account.ifPresent(value ->
                 value.setTransactions(transactionRepository

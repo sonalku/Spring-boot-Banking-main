@@ -31,7 +31,7 @@ class CheckBalanceIntegrationTest {
         var account = (Account) body;
         assertThat(account).isNotNull();
         assertThat(account.getOwnerName()).isEqualTo("Paul Dragoslav");
-        assertThat(account.getSortCode()).isEqualTo("53-68-92");
+        assertThat(account.getIfscCode()).isEqualTo("53-68-92");
         assertThat(account.getAccountNumber()).isEqualTo("73084635");
     }
 }

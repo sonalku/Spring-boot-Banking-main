@@ -1,6 +1,6 @@
 package com.example.paul.controllers;
 
-import com.example.paul.constants.constants;
+import com.example.paul.constants.Constants;
 import com.example.paul.models.Account;
 import com.example.paul.services.AccountService;
 import com.example.paul.utils.AccountInput;
@@ -50,12 +50,12 @@ public class AccountRestController {
 
             // Return the account details, or warn that no account was found for given input
             if (account == null) {
-                return new ResponseEntity<>(constants.NO_ACCOUNT_FOUND, HttpStatus.OK);
+                return new ResponseEntity<>(Constants.NO_ACCOUNT_FOUND, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(account, HttpStatus.OK);
             }
         } else {
-            return new ResponseEntity<>(constants.INVALID_SEARCH_CRITERIA, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(Constants.INVALID_SEARCH_CRITERIA, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -75,12 +75,12 @@ public class AccountRestController {
 
             // Return the account details, or warn that no account was found for given input
             if (account == null) {
-                return new ResponseEntity<>(constants.CREATE_ACCOUNT_FAILED, HttpStatus.OK);
+                return new ResponseEntity<>(Constants.CREATE_ACCOUNT_FAILED, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(account, HttpStatus.OK);
             }
         } else {
-            return new ResponseEntity<>(constants.INVALID_SEARCH_CRITERIA, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(Constants.INVALID_SEARCH_CRITERIA, HttpStatus.BAD_REQUEST);
         }
     }
 

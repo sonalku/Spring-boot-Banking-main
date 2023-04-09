@@ -1,16 +1,16 @@
 package com.example.paul.utils;
 
-import com.example.paul.constants.constants;
+import com.example.paul.constants.Constants;
 
 public class InputValidator {
 
     public static boolean isSearchCriteriaValid(AccountInput accountInput) {
-        return constants.SORT_CODE_PATTERN.matcher(accountInput.getSortCode()).find() &&
-                constants.ACCOUNT_NUMBER_PATTERN.matcher(accountInput.getAccountNumber()).find();
+        return Constants.SORT_CODE_PATTERN.matcher(accountInput.getSortCode()).find() &&
+                Constants.ACCOUNT_NUMBER_PATTERN.matcher(accountInput.getAccountNumber()).find();
     }
 
     public static boolean isAccountNoValid(String accountNo) {
-        return constants.ACCOUNT_NUMBER_PATTERN.matcher(accountNo).find();
+        return Constants.ACCOUNT_NUMBER_PATTERN.matcher(accountNo).find();
     }
 
     public static boolean isCreateAccountCriteriaValid(CreateAccountInput createAccountInput) {

@@ -1,5 +1,6 @@
 package com.example.paul.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +15,7 @@ import java.util.Objects;
 @Table(name = "payee", schema = "online_bank")
 @Getter
 @Setter
-@NoArgsConstructor
+@NoArgsConstructor @AllArgsConstructor
 public class Payee {
     @Id   @GeneratedValue
     private  long id;

@@ -2,8 +2,8 @@ package com.example.paul.utils;
 
 import com.mifmif.common.regex.Generex;
 
-import static com.example.paul.constants.constants.ACCOUNT_NUMBER_PATTERN_STRING;
-import static com.example.paul.constants.constants.SORT_CODE_PATTERN_STRING;
+import static com.example.paul.constants.Constants.ACCOUNT_NUMBER_PATTERN_STRING;
+import static com.example.paul.constants.Constants.SORT_CODE_PATTERN_STRING;
 
 public class CodeGenerator {
     Generex sortCodeGenerex = new Generex(SORT_CODE_PATTERN_STRING);

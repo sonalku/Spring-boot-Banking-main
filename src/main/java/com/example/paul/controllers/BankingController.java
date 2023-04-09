@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.paul.constants.constants;
+import com.example.paul.constants.Constants;
 
 @RestController
 @RequestMapping("api/v1/bank")
@@ -20,7 +20,7 @@ public class BankingController {
 	@GetMapping()
     public ResponseEntity<List<String>> getOptions() {
         LOGGER.debug("Triggered AccountRestController.accountInput");     
-		return new ResponseEntity<List<String>>(constants.OPTIONS,HttpStatus.OK);
+		return new ResponseEntity<List<String>>(Constants.OPTIONS,HttpStatus.OK);
     }
 	
 	@GetMapping(value = "/options/{inputValue}")
@@ -29,12 +29,12 @@ public class BankingController {
     		) {
         LOGGER.debug("Triggered AccountRestController.accountInput");  
         switch (inputValue) {
-		case constants.OTHER_SERVICES : return new ResponseEntity<List<String>>(constants.OTHER_SERVICES_OPTIONS,HttpStatus.OK);
-		case constants.STATEMENT : return new ResponseEntity<List<String>>(constants.STATEMENTS_OPTIONS,HttpStatus.OK);
-		case constants.CARDS : return new ResponseEntity<List<String>>(constants.CARDS_OPTIONS,HttpStatus.OK);
-		case constants.ACCOUNT : return new ResponseEntity<List<String>>(constants.ACCOUNT_OPTIONS,HttpStatus.OK);
+		case Constants.OTHER_SERVICES : return new ResponseEntity<List<String>>(Constants.OTHER_SERVICES_OPTIONS,HttpStatus.OK);
+		case Constants.STATEMENT : return new ResponseEntity<List<String>>(Constants.STATEMENTS_OPTIONS,HttpStatus.OK);
+		case Constants.CARDS : return new ResponseEntity<List<String>>(Constants.CARDS_OPTIONS,HttpStatus.OK);
+		case Constants.ACCOUNT : return new ResponseEntity<List<String>>(Constants.ACCOUNT_OPTIONS,HttpStatus.OK);
 		default:
-			return new ResponseEntity<List<String>>(constants.WRONG_INPUT_OPTIONS,HttpStatus.OK);
+			return new ResponseEntity<List<String>>(Constants.WRONG_INPUT_OPTIONS,HttpStatus.OK);
 		}
 		
     }
