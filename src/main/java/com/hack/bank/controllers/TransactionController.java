@@ -24,15 +24,15 @@ import static com.hack.bank.constants.Constants.*;
 @RestController
 @RequestMapping("api/v1")
 @CrossOrigin(origins = "http://localhost:3000")
-public class TransactionRestController {
+public class TransactionController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TransactionRestController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TransactionController.class);
 
     private final AccountService accountService;
     private final TransactionService transactionService;
 
     @Autowired
-    public TransactionRestController(AccountService accountService, TransactionService transactionService) {
+    public TransactionController(AccountService accountService, TransactionService transactionService) {
         this.accountService = accountService;
         this.transactionService = transactionService;
     }

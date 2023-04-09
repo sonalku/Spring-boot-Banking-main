@@ -8,11 +8,11 @@
 		<version>2.7.0</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example.paul</groupId>
+	<groupId>com.hack.bank</groupId>
 	<artifactId>Banking</artifactId>
 	<version>0.0.1</version>
 	<name>Banking</name>
-	<description>Demo banking project for Spring Boot</description>
+	<description>This is banking application with speech to text facility </description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

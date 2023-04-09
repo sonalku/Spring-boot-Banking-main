@@ -1,6 +1,6 @@
 package com.hack.bank.integration;
 
-import com.hack.bank.controllers.TransactionRestController;
+import com.hack.bank.controllers.TransactionController;
 import com.hack.bank.utils.AccountInput;
 import com.hack.bank.utils.TransactionInput;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class MakeTransferIntegrationTest {
 
     @Autowired
-    private TransactionRestController transactionRestController;
+    private TransactionController transactionController;
 
     @Test
     void givenTransactionDetails_whenMakeTransaction_thenVerifyTransactionIsProcessed() {
@@ -37,7 +37,7 @@ class MakeTransferIntegrationTest {
         //input.setLongitude(90.0000000);
 
         // when
-        var body = transactionRestController.makeTransfer(input).getBody();
+        var body = transactionController.makeTransfer(input).getBody();
 
         // then
         var isComplete = (Boolean) body;

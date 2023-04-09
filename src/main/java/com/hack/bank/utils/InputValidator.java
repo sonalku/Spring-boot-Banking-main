@@ -5,7 +5,7 @@ import com.hack.bank.constants.Constants;
 public class InputValidator {
 
     public static boolean isSearchCriteriaValid(AccountInput accountInput) {
-        return Constants.SORT_CODE_PATTERN.matcher(accountInput.getIfscCode()).find() &&
+        return Constants.IFSC_CODE_PATTERN.matcher(accountInput.getIfscCode()).find() &&
                 Constants.ACCOUNT_NUMBER_PATTERN.matcher(accountInput.getAccountNumber()).find();
     }
 

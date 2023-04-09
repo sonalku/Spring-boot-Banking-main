@@ -1,6 +1,6 @@
 package com.hack.bank.unit;
 
-import com.hack.bank.controllers.TransactionRestController;
+import com.hack.bank.controllers.TransactionController;
 import com.hack.bank.services.TransactionService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,8 +14,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(TransactionRestController.class)
-class TransactionRestControllerTest {
+@WebMvcTest(TransactionController.class)
+class TransactionControllerTest {
 
     @Autowired
     private MockMvc mvc;
