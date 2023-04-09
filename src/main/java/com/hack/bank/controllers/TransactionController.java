@@ -103,11 +103,8 @@ public class TransactionController {
     }
 
     @GetMapping(value = "/account/transactions")
-    public ResponseEntity<List<String>> getTransactions(@RequestParam(name = "accountNumber", required = true) String accountNumber,
-                                                                @RequestParam(name = "operation", required = true) String operation){
-            if(SHOW_TRANSACTION.equals(operation)) {
+    public ResponseEntity<List<String>> getTransactions(
+            @RequestParam(name = "accountNumber", required = true) String accountNumber){
                 return transactionService.getTransactions(accountNumber);
-            }else return null;
-
     }
 }
