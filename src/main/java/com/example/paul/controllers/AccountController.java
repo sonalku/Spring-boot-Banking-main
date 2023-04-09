@@ -9,30 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import static com.example.paul.constants.constants.INVALID_TRANSACTION;
 
 import java.util.List;
-
-import javax.validation.Valid;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.example.paul.constants.constants;
-import com.example.paul.services.AccountService;
-import com.example.paul.utils.InputValidator;
-import com.example.paul.utils.TransactionInput;
 
 @RestController
 @RequestMapping("api/v1/")
@@ -44,8 +22,6 @@ public class AccountController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AccountController.class);
 
-    @Autowired
-    private AccountService accountService;
     //Show Transactions
     @GetMapping(value = "/account/{inputValue}")
     public ResponseEntity<List<String>> getAccountOption(
@@ -74,27 +50,4 @@ public class AccountController {
         return null;
     }
 
-    @GetMapping(value = "/account/sendMoney/{accountNumber}/{amount}/{payee}")
-    public ResponseEntity<String> sendMoney(
-            @RequestParam(name = "accountNumber", required = true) String accountNumber,
-            @RequestParam(name = "amount", required = true) double amount,
-            @RequestParam(name = "payee", required = true) String payee
-    ) {
-        LOGGER.debug("Triggered AccountController.getAccountOption");
-        return accountService.sentMoney(accountNumber, amount, payee);  
-    }
-    
-    @PostMapping(value = "/account/sendMoney",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> makeTransfer(
-            @Valid @RequestBody TransactionInput transactionInput) {
-        if (InputValidator.isSearchTransactionValid(transactionInput)) {
-//            new Thread(() -> transactionService.makeTransfer(transactionInput));
-            boolean isComplete = accountService.makeTransfer(transactionInput);
-            return new ResponseEntity<>(isComplete, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(INVALID_TRANSACTION, HttpStatus.BAD_REQUEST);
-        }
-    }
 }

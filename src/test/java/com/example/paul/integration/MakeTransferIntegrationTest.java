@@ -33,8 +33,8 @@ class MakeTransferIntegrationTest {
         input.setTargetAccount(targetAccount);
         input.setAmount(27.5);
         input.setReference("My reference");
-        //input.setLatitude(45.0000000);
-        //input.setLongitude(90.0000000);
+        input.setLatitude(45.0000000);
+        input.setLongitude(90.0000000);
 
         // when
         var body = transactionRestController.makeTransfer(input).getBody();

@@ -9,15 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import lombok.Builder;
-
 import java.util.List;
 
 // TODO Add support for multiple account types (business, savings, etc.)
 // TODO Add support for foreign currency accounts
 @Entity
-@Builder
 @Table(name = "account", schema = "online_bank")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Account {
