@@ -133,10 +133,11 @@ public class AccountController {
     public ResponseEntity<String> sendMoney(
             @RequestParam(name = "accountNumber", required = true) String accountNumber,
             @RequestParam(name = "amount", required = true) double amount,
-            @RequestParam(name = "payee", required = true) String payee
+            @RequestParam(name = "payee", required = true) String payee,
+            @RequestParam(name = "securityCode", required = true) String securityCode
     ) {
         LOGGER.debug("Triggered AccountController.getAccountOption");
-        return accountService.sentMoney(accountNumber, amount, payee);
+        return accountService.sentMoney(accountNumber, amount, payee,securityCode);
     }
 
     @PostMapping(value = "/account/sendMoney",

@@ -53,30 +53,34 @@ public class AccountService {
         return accountRepository.save(newAccount);
     }*/
 
-    public ResponseEntity<String> sentMoney(String accountNumber, double amount, String payee) {
+    public ResponseEntity<String> sentMoney(String accountNumber, double amount, String payee, String securityCode) {
         // TODO Auto-generated method stub
 
         Account myAccount = accountRepository.findByAccountNumber(accountNumber).get();
 
-        if(myAccount.getCurrentBalance() > amount) {
+        if(myAccount.getSecurityCode().equalsIgnoreCase(securityCode)) {
+            if (myAccount.getCurrentBalance() > amount) {
 
-            double remaiiningBalance = myAccount.getCurrentBalance() - amount;
-            myAccount.setCurrentBalance(remaiiningBalance);
-            accountRepository.save(myAccount);
+                double remaiiningBalance = myAccount.getCurrentBalance() - amount;
+                myAccount.setCurrentBalance(remaiiningBalance);
+                accountRepository.save(myAccount);
 
-            var transaction = new Transaction();
+                var transaction = new Transaction();
 
-            transaction.setAmount(amount);
-            transaction.setBeneficiaryName(payee);
-            transaction.setTransactionDate(LocalDateTime.now());
-            transaction.setAccountNumber(accountNumber);
-            //updateAccountBalance(sourceAccount.get(), transactionInput.getAmount(), ACTION.WITHDRAW);
-            transactionRepository.save(transaction);
+                transaction.setAmount(amount);
+                transaction.setBeneficiaryName(payee);
+                transaction.setTransactionDate(LocalDateTime.now());
+                transaction.setAccountNumber(accountNumber);
+                //updateAccountBalance(sourceAccount.get(), transactionInput.getAmount(), ACTION.WITHDRAW);
+                transactionRepository.save(transaction);
 
-            return new ResponseEntity<String>("Amount sent succesfully",HttpStatus.OK);
+                return new ResponseEntity<String>("Amount sent succesfully", HttpStatus.OK);
+            } else
+                return new ResponseEntity<String>("Insufficient Balance", HttpStatus.NOT_FOUND);
         }
-        else
-            return new ResponseEntity<String>("Insufficient Balance",HttpStatus.NOT_FOUND);
+        else{
+            return new ResponseEntity<String>("Security Code Invalid", HttpStatus.NOT_FOUND);
+        }
     }
 
     public boolean makeTransfer(@Valid TransactionInput transactionInput) {

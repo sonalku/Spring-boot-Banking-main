@@ -8,6 +8,7 @@ CREATE TABLE online_bank.account (
     current_balance NUMERIC(10,3) NOT NULL,
     bank_name VARCHAR(50) NOT NULL,
     owner_name VARCHAR(50) NOT NULL,
+    security_code VARCHAR(50) NOT NULL,
     UNIQUE (ifsc_code, account_number)
 );
 

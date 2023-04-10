@@ -1,7 +1,7 @@
-INSERT INTO online_bank.account (id,account_type, ifsc_code, account_number, current_balance, bank_name, owner_name)
-VALUES (1,'SAVINGS', '53-68-92', '73084635', 1071.78, 'Challenger Bank', 'Raj Patil');
-INSERT INTO online_bank.account (id,account_type, ifsc_code, account_number, current_balance, bank_name, owner_name)
-VALUES (2,'CURRENT', '65-93-37', '21956204', 67051.01, 'High Street Bank', 'Shyam McDuck');
+INSERT INTO online_bank.account (id,account_type, ifsc_code, account_number, current_balance, bank_name, owner_name, security_code)
+VALUES (1,'SAVINGS', '53-68-92', '73084635', 1071.78, 'Challenger Bank', 'Raj Patil', 'I AM FINE');
+INSERT INTO online_bank.account (id,account_type, ifsc_code, account_number, current_balance, bank_name, owner_name, security_code)
+VALUES (2,'CURRENT', '65-93-37', '21956204', 67051.01, 'High Street Bank', 'Shyam McDuck', 'DO IT NOW');
 
 INSERT INTO online_bank.transaction (id, account_number, beneficiary_name, amount, transaction_date )
 VALUES (1, '21956204', 'Shyam McDuck', 100.00, '2019-04-01 10:30');

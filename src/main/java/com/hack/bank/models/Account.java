@@ -31,5 +31,7 @@ public class Account {
 
     private String ownerName;
 
+    private String securityCode;
+
     private transient List<Transaction> transactions;
 }

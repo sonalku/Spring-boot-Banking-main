@@ -108,15 +108,15 @@ public class TransactionController {
             @RequestParam(name = "accountNumber", required = true) String accountNumber){
             Transaction lastTransaction = transactionService.getLastTransaction(accountNumber);
             StringBuilder builder = new StringBuilder();
-            builder.append("Your Last Transaction is Transaction Number")
+            builder.append("Your Last Transaction is Transaction Number ")
                     .append(lastTransaction.getId())
-                    .append("Is Debited From Account Number")
+                    .append(" Debited From Account Number ")
                     .append(lastTransaction.getAccountNumber())
-                    .append("Amount")
+                    .append(" Amount ")
                     .append(lastTransaction.getAmount())
-                    .append("To Beneficiary")
+                    .append(" To Beneficiary ")
                     .append(lastTransaction.getBeneficiaryName())
-                    .append("On")
+                    .append(" On ")
                     .append(lastTransaction.getTransactionDate());
             return new ResponseEntity<String>(builder.toString(),HttpStatus.OK);
     }
