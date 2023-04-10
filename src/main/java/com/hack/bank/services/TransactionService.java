@@ -85,13 +85,27 @@ public class TransactionService {
             for (Iterator<Transaction> transaction = lastTransactions.iterator();
                  transaction.hasNext(); ) {
                 Transaction trans = transaction.next();
-                String transactionString = "TRANSACTION ID " + trans.getId() + " For Amount " + trans.getAmount()
-                        + " HAS BEEN CREDITED TO " + trans.getBeneficiaryName() + " ACCOUNT DEBITED FROM ACCOUNT "
-                        + trans.getAccountNumber() + " ON " + trans.getTransactionDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
+                String transactionString = "TRANSACTION NUMBER " + trans.getId() + " FOR AMOUNT " + trans.getAmount()
+                        + ", HAS BEEN CREDITED TO " + trans.getBeneficiaryName() + ". DEBITED FROM ACCOUNT "
+                        + trans.getAccountNumber() + ", ON " + convertToReadableDate(trans.getTransactionDate());
+                        //trans.getTransactionDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
                 transactions.add(transactionString);
             }
             return new ResponseEntity<>(transactions, HttpStatus.OK);
         }
+    }
+    private String convertToReadableDate(LocalDateTime localDateTime){
+        StringBuilder dateBuilder = new StringBuilder();
+        dateBuilder.append(localDateTime.getDayOfWeek()).append(" ")
+                .append(localDateTime.getDayOfMonth()).append(" ")
+                .append(localDateTime.getMonth()).append(" ")
+                .append(localDateTime.getYear()).append(" ")
+                .append(", At ").append(" ")
+                .append(localDateTime.getHour()).append(" ")
+                .append(localDateTime.getMinute()).append(" ");
+
+
+        return dateBuilder.toString();
     }
 }
 

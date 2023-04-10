@@ -21,6 +21,10 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -108,16 +112,19 @@ public class TransactionController {
             @RequestParam(name = "accountNumber", required = true) String accountNumber){
             Transaction lastTransaction = transactionService.getLastTransaction(accountNumber);
             StringBuilder builder = new StringBuilder();
+
+            var redableDate = convertToReadableDate(lastTransaction.getTransactionDate());
             builder.append("Your Last Transaction is Transaction Number ")
                     .append(lastTransaction.getId())
+                    .append(".")
                     .append(" Debited From Account Number ")
                     .append(lastTransaction.getAccountNumber())
-                    .append(" Amount ")
+                    .append(", Amount ")
                     .append(lastTransaction.getAmount())
                     .append(" To Beneficiary ")
                     .append(lastTransaction.getBeneficiaryName())
-                    .append(" On ")
-                    .append(lastTransaction.getTransactionDate());
+                    .append(", On ")
+                    .append(redableDate);
             return new ResponseEntity<String>(builder.toString(),HttpStatus.OK);
     }
 
@@ -125,5 +132,19 @@ public class TransactionController {
     public ResponseEntity<List<String>> getTransactions(
             @RequestParam(name = "accountNumber", required = true) String accountNumber){
                 return transactionService.getTransactions(accountNumber);
+    }
+
+    private String convertToReadableDate(LocalDateTime localDateTime){
+        StringBuilder dateBuilder = new StringBuilder();
+        dateBuilder.append(localDateTime.getDayOfWeek()).append(" ")
+                .append(localDateTime.getDayOfMonth()).append(" ")
+                .append(localDateTime.getMonth()).append(" ")
+                .append(localDateTime.getYear()).append(" ")
+                .append(", At ").append(" ")
+                .append(localDateTime.getHour()).append(" ")
+                .append(localDateTime.getMinute()).append(" ");
+
+
+        return dateBuilder.toString();
     }
 }
