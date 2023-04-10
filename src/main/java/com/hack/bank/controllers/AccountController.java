@@ -28,7 +28,7 @@ import static com.hack.bank.constants.Constants.INVALID_TRANSACTION;
 
 @RestController
 @RequestMapping("api/v1/")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AccountController {
 
     @Autowired
