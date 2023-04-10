@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface PayeeRepository extends JpaRepository<Payee, Long> {
     Optional<Payee> findByPayeeName(String payeeName);
+
+    Optional<Payee> findByPayeeNameLike(String payeeName);
 }

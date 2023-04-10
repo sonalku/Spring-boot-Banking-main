@@ -11,9 +11,10 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@SequenceGenerator(name = "payee_seq", sequenceName = "payee_sequence", schema = "online_bank", allocationSize = 1)
 public class Payee {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "payee_seq")
     private  long id;
     String payeeName;
     private String accountNumber;

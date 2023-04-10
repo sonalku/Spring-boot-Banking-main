@@ -33,6 +33,7 @@ CREATE TABLE online_bank.transaction (
     transaction_date timestamp NOT NULL
 );
 
+CREATE SEQUENCE online_bank.payee_sequence START WITH 2;
 CREATE TABLE online_bank.payee (
     id bigint NOT NULL PRIMARY KEY,
     payee_name CHAR(30) NOT NULL,
