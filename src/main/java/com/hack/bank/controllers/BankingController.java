@@ -12,7 +12,7 @@ import com.hack.bank.constants.Constants;
 
 @RestController
 @RequestMapping("api/v1/bank")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:4200")
 public class BankingController {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(BankingController.class);

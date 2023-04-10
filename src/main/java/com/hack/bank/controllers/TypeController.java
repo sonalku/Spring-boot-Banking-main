@@ -17,7 +17,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("api/v1/type")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:4200")
 public class TypeController {
     private static final Logger LOGGER = LoggerFactory.getLogger(TypeController.class);
 

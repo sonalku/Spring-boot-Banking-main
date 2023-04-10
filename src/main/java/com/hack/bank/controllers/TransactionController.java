@@ -33,7 +33,7 @@ import static com.hack.bank.constants.Constants.*;
 
 @RestController
 @RequestMapping("api/v1")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:4200")
 public class TransactionController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TransactionController.class);
