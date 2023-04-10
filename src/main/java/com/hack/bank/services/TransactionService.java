@@ -82,8 +82,8 @@ public class TransactionService {
             for (Iterator<Transaction> transaction = lastTransactions.iterator();
                  transaction.hasNext(); ) {
                 Transaction trans = transaction.next();
-                String transactionString = "TRANSACTION NUMBER " + trans.getId() + " FOR AMOUNT " + trans.getAmount()
-                        + ", HAS BEEN CREDITED TO " + trans.getBeneficiaryName() + ". DEBITED FROM ACCOUNT "
+                String transactionString = "TRANSACTION " + trans.getId() + " FOR AMOUNT " + trans.getAmount()
+                        + ", CREDITED TO " + trans.getBeneficiaryName() + ". FROM ACCOUNT "
                         + trans.getAccountNumber() + ", ON " + convertToReadableDate(trans.getTransactionDate());
                 transactions.add(transactionString);
             }
