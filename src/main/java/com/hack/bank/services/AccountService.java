@@ -101,17 +101,14 @@ public class AccountService {
         Optional<Account> sourceAccount = accountRepository
                 .findByIfscCodeAndAccountNumber(ifscCode, sourceAccountNumber);
 
-        String targetSortCode = transactionInput.getTargetAccount().getIfscCode();
-        String targetAccountNumber = transactionInput.getTargetAccount().getAccountNumber();
-        Optional<Account> targetAccount = accountRepository
-                .findByIfscCodeAndAccountNumber(targetSortCode, targetAccountNumber);
+        String securityCode = transactionInput.getSecurityCode();
 
-        if (sourceAccount.isPresent() && targetAccount.isPresent()) {
+        if (sourceAccount.isPresent() && sourceAccount.get().getSecurityCode().equalsIgnoreCase(securityCode)) {
             if (isAmountAvailable(transactionInput.getAmount(), sourceAccount.get().getCurrentBalance())) {
                 var transaction = new Transaction();
 
                 transaction.setAmount(transactionInput.getAmount());
-                transaction.setBeneficiaryName(targetAccount.get().getOwnerName());
+                transaction.setBeneficiaryName(transactionInput.getBeneficiary());
                 transaction.setTransactionDate(LocalDateTime.now());
                 transaction.setAccountNumber(sourceAccountNumber);
                 updateAccountBalance(sourceAccount.get(), transactionInput.getAmount(), ACTION.WITHDRAW);

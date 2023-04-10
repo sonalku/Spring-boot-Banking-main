@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.hack.bank.constants.Constants.INVALID_TRANSACTION;
+import static com.hack.bank.constants.Constants.SUCCESSFUL_TRANSACTION;
 
 @RestController
 @RequestMapping("api/v1/")
@@ -142,15 +143,13 @@ public class AccountController {
         return accountService.sentMoney(accountNumber, amount, payee,securityCode);
     }
 
-    @PostMapping(value = "/account/sendMoney",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> makeTransfer(
+    @PostMapping(value = "/account/sendMoney")
+    public ResponseEntity<String> makeTransfer(
             @Valid @RequestBody TransactionInput transactionInput) {
         if (InputValidator.isSearchTransactionValid(transactionInput)) {
 //            new Thread(() -> transactionService.makeTransfer(transactionInput));
             boolean isComplete = accountService.makeTransfer(transactionInput);
-            return new ResponseEntity<>(isComplete, HttpStatus.OK);
+            return new ResponseEntity<String>(SUCCESSFUL_TRANSACTION, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(INVALID_TRANSACTION, HttpStatus.BAD_REQUEST);
         }

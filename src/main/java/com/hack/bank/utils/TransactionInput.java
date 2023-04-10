@@ -3,14 +3,18 @@ package com.hack.bank.utils;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
 
-import lombok.ToString;
+import lombok.*;
 
 @ToString
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class TransactionInput {
 
     private AccountInput sourceAccount;
 
-    private AccountInput targetAccount;
+    private String securityCode;
 
     private String beneficiary;
 
@@ -20,57 +24,4 @@ public class TransactionInput {
     private double amount;
 
     private String reference;
-
-    /*
-     * @Min(value = -90, message = "Latitude must be between -90 and 90")
-     *
-     * @Max(value = 90, message = "Latitude must be between -90 and 90") private
-     * Double latitude;
-     *
-     * @Min(value = -180, message = "Longitude must be between -180 and 180")
-     *
-     * @Max(value = 180, message = "Longitude must be between -180 and 180") private
-     * Double longitude;
-     */
-
-    public TransactionInput() {}
-
-    public AccountInput getSourceAccount() {
-        return sourceAccount;
-    }
-    public void setSourceAccount(AccountInput sourceAccount) {
-        this.sourceAccount = sourceAccount;
-    }
-    public AccountInput getTargetAccount() {
-        return targetAccount;
-    }
-    public void setTargetAccount(AccountInput targetAccount) {
-        this.targetAccount = targetAccount;
-    }
-    public double getAmount() {
-        return amount;
-    }
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-    public String getReference() {
-        return reference;
-    }
-    public void setReference(String reference) {
-        this.reference = reference;
-    }
-    /*
-     * public Double getLatitude() { return latitude; } public void
-     * setLatitude(Double latitude) { this.latitude = latitude; } public Double
-     * getLongitude() { return longitude; } public void setLongitude(Double
-     * longitude) { this.longitude = longitude; }
-     */
-
-    public String getBeneficiary() {
-        return beneficiary;
-    }
-
-    public void setBeneficiary(String beneficiary) {
-        this.beneficiary = beneficiary;
-    }
 }
