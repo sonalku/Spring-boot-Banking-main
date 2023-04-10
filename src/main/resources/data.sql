@@ -2,8 +2,6 @@ INSERT INTO online_bank.account (id,account_type, ifsc_code, account_number, cur
 VALUES (1,'SAVINGS', '53-68-92', '73084635', 15000000, 'Easy Bank', 'John Lewis', 'I AM FINE');
 INSERT INTO online_bank.account (id,account_type, ifsc_code, account_number, current_balance, bank_name, owner_name, security_code)
 VALUES (2,'CURRENT', '65-93-37', '21956204', 250000000, 'Easy Bank', 'John Lewis', 'DO IT NOW');
-INSERT INTO online_bank.account (id,account_type, ifsc_code, account_number, current_balance, bank_name, owner_name, security_code)
-
 
 
 INSERT INTO online_bank.transaction (id, account_number, beneficiary_name, amount, transaction_date )

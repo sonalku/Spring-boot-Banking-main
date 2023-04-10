@@ -6,7 +6,7 @@ CREATE TABLE online_bank.account (
     account_type CHAR(15) NOT NULL,
     ifsc_code CHAR(8) NOT NULL,
     account_number CHAR(8) NOT NULL,
-    current_balance NUMERIC(10,3) NOT NULL,
+    current_balance NUMERIC(20,3) NOT NULL,
     bank_name VARCHAR(50) NOT NULL,
     owner_name VARCHAR(50) NOT NULL,
     security_code VARCHAR(50) NOT NULL,
@@ -17,9 +17,9 @@ CREATE TABLE online_bank.cards (
     id bigint NOT NULL PRIMARY KEY,
     account_number CHAR(8) NOT NULL,
 	card_type VARCHAR(8) NOT NULL,
-    current_balance NUMERIC(10,3) NOT NULL,
+    current_balance NUMERIC(20,3) NOT NULL,
     card_number VARCHAR(50) NOT NULL,
-    card_limit NUMERIC(10,3),
+    card_limit NUMERIC(20,3),
 	billing_date timestamp NOT NULL
 );
 
@@ -29,7 +29,7 @@ CREATE TABLE online_bank.transaction (
     -- Partially denormalize for performance
     beneficiary_name varchar(50) NOT NULL,
     account_number CHAR(8) NOT NULL,
-    amount NUMERIC(10,3) NOT NULL,
+    amount NUMERIC(20,3) NOT NULL,
     transaction_date timestamp NOT NULL
 );
 

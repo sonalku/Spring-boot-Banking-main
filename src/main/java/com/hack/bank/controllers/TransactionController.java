@@ -135,10 +135,11 @@ public class TransactionController {
     @GetMapping(value = "/showStatistics")
     public ResponseEntity<List<String>> showStatistics(String accountNumber){
         List<String> list = new ArrayList();
-        list.add("Your Have Spent 10 % on Rent.");
-        list.add("Your Have Spent 40 % on Shopping.");
-        list.add("Your Have Spent 35 % on Hotel.");
-        list.add("Your Have Spent 15 % on Other Expenses.");
+        list.add("Your Have Spent 34 % on Rent.");
+        list.add("Your Have Spent 12 % on Shopping.");
+        list.add("Your Have Spent 22 % on Grocery.");
+        list.add("Your Have Spent 16 % on Bill Payment.");
+        list.add("Your Have Spent 16 % on Other Expenses.");
         return new ResponseEntity<List<String>>(list,HttpStatus.OK);
     }
     private String convertToReadableDate(LocalDateTime localDateTime){
