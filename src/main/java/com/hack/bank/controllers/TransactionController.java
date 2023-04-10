@@ -132,6 +132,15 @@ public class TransactionController {
                 return transactionService.getTransactions(accountNumber);
     }
 
+    @GetMapping(value = "/showStatistics")
+    public ResponseEntity<List<String>> showStatistics(String accountNumber){
+        List<String> list = new ArrayList();
+        list.add("Your Have Spent 10 % on Rent.");
+        list.add("Your Have Spent 40 % on Shopping.");
+        list.add("Your Have Spent 35 % on Hotel.");
+        list.add("Your Have Spent 15 % on Other Expenses.");
+        return new ResponseEntity<List<String>>(list,HttpStatus.OK);
+    }
     private String convertToReadableDate(LocalDateTime localDateTime){
         StringBuilder dateBuilder = new StringBuilder();
         dateBuilder.append(localDateTime.getDayOfWeek()).append(" ")

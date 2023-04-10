@@ -18,5 +18,10 @@ public class CardsService {
         return cards;
 
     }
+    public Optional<List<Cards>> getCardByAccountNumberAndCardType(String accountNumber,String cardType){
+        Optional<List<Cards>> cards = cardsRepository.findByAccountNumberAndCardType(accountNumber, cardType);
+        return cards;
+
+    }
 
 }
