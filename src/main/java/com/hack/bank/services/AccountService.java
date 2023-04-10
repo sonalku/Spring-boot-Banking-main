@@ -5,6 +5,7 @@ import com.hack.bank.models.Account;
 import com.hack.bank.models.Transaction;
 import com.hack.bank.repositories.AccountRepository;
 import com.hack.bank.repositories.TransactionRepository;
+import com.hack.bank.utils.CodeGenerator;
 import com.hack.bank.utils.TransactionInput;
 
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
+import java.util.RandomAccess;
 
 import javax.validation.Valid;
 
@@ -47,11 +50,19 @@ public class AccountService {
         return account.orElse(null);
     }
 
-    /*public Account createAccount(String bankName, String ownerName) {
+    public Account createAccount(String bankName, String ownerName, String securityCode) {
         CodeGenerator codeGenerator = new CodeGenerator();
-        Account newAccount = new Account(bankName, ownerName, codeGenerator.generateSortCode(), codeGenerator.generateAccountNumber(), 0.00);
-        return accountRepository.save(newAccount);
-    }*/
+
+        Account newAccountSaveing = new Account();
+        newAccountSaveing.setBankName(bankName);
+        newAccountSaveing.setOwnerName(ownerName);
+        newAccountSaveing.setIfscCode(codeGenerator.generateSortCode());
+        newAccountSaveing.setAccountNumber(codeGenerator.generateAccountNumber());
+        newAccountSaveing.setCurrentBalance(0.00);
+        newAccountSaveing.setAccountType("SAVING");
+        newAccountSaveing.setSecurityCode(securityCode);
+        return accountRepository.save(newAccountSaveing);
+    }
 
     public ResponseEntity<String> sentMoney(String accountNumber, double amount, String payee, String securityCode) {
         // TODO Auto-generated method stub

@@ -1,8 +1,17 @@
 package com.hack.bank.utils;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class CreateAccountInput {
 
     @NotBlank(message = "Bank name is mandatory")
@@ -11,32 +20,9 @@ public class CreateAccountInput {
     @NotBlank(message = "Owner name is mandatory")
     private String ownerName;
 
+    @NotBlank(message = "Owner name is mandatory")
+    private String securityCode;
 
-    public CreateAccountInput() {}
-
-    public String getBankName() {
-        return bankName;
-    }
-
-    public void setBankName(String bankName) {
-        this.bankName = bankName;
-    }
-
-    public String getOwnerName() {
-        return ownerName;
-    }
-
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
-    }
-
-    @Override
-    public String toString() {
-        return "CreateAccountInput{" +
-                "bankName='" + bankName + '\'' +
-                ", ownerName='" + ownerName + '\'' +
-                '}';
-    }
 
     @Override
     public boolean equals(Object o) {

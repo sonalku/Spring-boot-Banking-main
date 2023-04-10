@@ -13,10 +13,12 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Builder
+@SequenceGenerator(name = "account_seq", sequenceName = "account_sequence", schema = "online_bank", allocationSize = 1)
 public class Account {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_seq")
     private long id;
 
     private String accountType;

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Table(name = "transaction", schema = "online_bank")
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
-@SequenceGenerator(name = "transaction_seq", sequenceName = "transaction_sequence", schema = "online_bank", initialValue = 5)
+@SequenceGenerator(name = "transaction_seq", sequenceName = "transaction_sequence", schema = "online_bank", initialValue = 5, allocationSize = 1)
 public class Transaction {
 
     @Id
