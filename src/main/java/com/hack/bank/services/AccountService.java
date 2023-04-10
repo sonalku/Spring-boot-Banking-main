@@ -64,7 +64,7 @@ public class AccountService {
         return accountRepository.save(newAccountSaveing);
     }
 
-    public ResponseEntity<String> sentMoney(String accountNumber, double amount, String payee, String securityCode) {
+    public String sentMoney(String accountNumber, double amount, String payee, String securityCode) {
         // TODO Auto-generated method stub
 
         Account myAccount = accountRepository.findByAccountNumber(accountNumber).get();
@@ -85,12 +85,12 @@ public class AccountService {
                 //updateAccountBalance(sourceAccount.get(), transactionInput.getAmount(), ACTION.WITHDRAW);
                 transactionRepository.save(transaction);
 
-                return new ResponseEntity<String>("Amount sent succesfully", HttpStatus.OK);
+                return "Amount sent succesfully";
             } else
-                return new ResponseEntity<String>("Insufficient Balance", HttpStatus.NOT_FOUND);
+                return "Insufficient Balance";
         }
         else{
-            return new ResponseEntity<String>("Security Code Invalid", HttpStatus.NOT_FOUND);
+            return "Security Code Invalid";
         }
     }
 

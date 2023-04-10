@@ -122,37 +122,53 @@ public class AccountController {
 */
 
     @GetMapping(value = "/account/balance/")
-    public ResponseEntity<String> showAccountBalance(
+    public ResponseEntity<List<String>> showAccountBalance(
             @RequestParam(name = "accountNumber", required = true) String accountNumber
     ){
             Account account = accountService.getAccount(accountNumber);
-            if(null != account)
-                return new ResponseEntity<String>("Your Account Balance is "+account.getCurrentBalance(),HttpStatus.OK);
-            else
-                return new ResponseEntity<>("Account Not found",HttpStatus.NOT_FOUND);
+            ArrayList<String> list = new ArrayList<>();
+
+            if(null != account) {
+                list.add("Your Account Balance is "+account.getCurrentBalance());
+                return new ResponseEntity<List<String>>(list, HttpStatus.OK);
+            }
+            else {
+                list.add("Account Not found");
+                return new ResponseEntity<List<String>>(list, HttpStatus.NOT_FOUND);
+            }
     }
 
     @GetMapping(value = "/account/sendMoney/{accountNumber}/{amount}/{payee}")
-    public ResponseEntity<String> sendMoney(
+    public ResponseEntity<List<String>> sendMoney(
             @RequestParam(name = "accountNumber", required = true) String accountNumber,
             @RequestParam(name = "amount", required = true) double amount,
             @RequestParam(name = "payee", required = true) String payee,
             @RequestParam(name = "securityCode", required = true) String securityCode
     ) {
         LOGGER.debug("Triggered AccountController.getAccountOption");
-        return accountService.sentMoney(accountNumber, amount, payee,securityCode);
+        ArrayList<String> list = new ArrayList();
+        String output = accountService.sentMoney(accountNumber, amount, payee,securityCode);
+        list.add(output);
+
+        if(output.equalsIgnoreCase("Amount sent succesfully"))
+            return new ResponseEntity<List<String>>(list,HttpStatus.OK);
+        else
+            return new ResponseEntity<List<String>>(list,HttpStatus.NOT_FOUND);
     }
 
     @PostMapping(value = "/account/sendMoney")
-    public ResponseEntity<String> makeTransfer(
+    public ResponseEntity<List<String>> makeTransfer(
             @Valid @RequestBody TransactionInput transactionInput) {
+        ArrayList<String> output = new ArrayList();
         if (InputValidator.isSearchTransactionValid(transactionInput)) {
 //            new Thread(() -> transactionService.makeTransfer(transactionInput));
             boolean isComplete = accountService.makeTransfer(transactionInput);
-            return new ResponseEntity<String>(SUCCESSFUL_TRANSACTION, HttpStatus.OK);
+            output.add(SUCCESSFUL_TRANSACTION);
+            return new ResponseEntity<List<String>>(output, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(INVALID_TRANSACTION, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<List<String>>(output, HttpStatus.BAD_REQUEST);
         }
+
     }
 
     @GetMapping(value = "/account/all")

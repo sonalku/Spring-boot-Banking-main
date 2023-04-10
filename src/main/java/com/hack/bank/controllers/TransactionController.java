@@ -24,10 +24,7 @@ import javax.validation.Valid;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.hack.bank.constants.Constants.*;
 
@@ -108,7 +105,7 @@ public class TransactionController {
         return new ResponseEntity<Transaction>(transactionService.getLastTransaction(accountNumber),HttpStatus.OK);
     }
     @GetMapping(value = "/account/lastTransactionForVoive")
-    public ResponseEntity<String> lastTransactionForVoive(
+    public ResponseEntity<List<String>> lastTransactionForVoive(
             @RequestParam(name = "accountNumber", required = true) String accountNumber){
             Transaction lastTransaction = transactionService.getLastTransaction(accountNumber);
             StringBuilder builder = new StringBuilder();
@@ -125,7 +122,9 @@ public class TransactionController {
                     .append(lastTransaction.getBeneficiaryName())
                     .append(", On ")
                     .append(redableDate);
-            return new ResponseEntity<String>(builder.toString(),HttpStatus.OK);
+        ArrayList<String> list = new ArrayList<>();
+        list.add(builder.toString());
+            return new ResponseEntity<List<String>>(list,HttpStatus.OK);
     }
 
     @GetMapping(value = "/account/transactions")

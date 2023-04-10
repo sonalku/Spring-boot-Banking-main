@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/type")
@@ -24,9 +26,11 @@ public class TypeController {
     @Autowired
     private TypeService typeService;
     @GetMapping()
-    public ResponseEntity<String> getType() {
+    public ResponseEntity<List<String>> getType() {
         LOGGER.debug("Triggered AccountRestController.accountInput");
-        return new ResponseEntity<String>(typeService.getType(),HttpStatus.OK);
+        List<String> output = new ArrayList();
+        output.add(typeService.getType());
+        return new ResponseEntity<List<String>>(output,HttpStatus.OK);
     }
     @PostMapping()
     public void setType(
