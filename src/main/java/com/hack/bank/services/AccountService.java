@@ -20,6 +20,8 @@ import java.util.RandomAccess;
 
 import javax.validation.Valid;
 
+import static com.hack.bank.constants.Constants.*;
+
 @Service
 public class AccountService {
 
@@ -31,17 +33,6 @@ public class AccountService {
         this.accountRepository = accountRepository;
         this.transactionRepository = transactionRepository;
     }
-
-//    public Account getAccount(String sortCode, String accountNumber) {
-//        Optional<Account> account = accountRepository
-//                .findByIfscCodeAndAccountNumber(sortCode, accountNumber);
-//
-//        account.ifPresent(value ->
-//                value.setTransactions(transactionRepository
-//                        .findByAccountNumber(accountNumber)));
-//
-//        return account.orElse(null);
-//    }
 
     public Account getAccount(String accountNumber) {
         Optional<Account> account = accountRepository
@@ -82,15 +73,14 @@ public class AccountService {
                 transaction.setBeneficiaryName(payee);
                 transaction.setTransactionDate(LocalDateTime.now());
                 transaction.setAccountNumber(accountNumber);
-                //updateAccountBalance(sourceAccount.get(), transactionInput.getAmount(), ACTION.WITHDRAW);
                 transactionRepository.save(transaction);
 
-                return "Amount sent succesfully";
+                return SUCCESSFUL_TRANSACTION;
             } else
-                return "Insufficient Balance";
+                return INSUFFICIENT_BALANCE;
         }
         else{
-            return "Security Code Invalid";
+            return SECURITY_CODE_INVALID;
         }
     }
 
@@ -130,7 +120,6 @@ public class AccountService {
         }
         accountRepository.save(account);
     }
-
 
     public List<Account> getAllAccounts() {
         List<Account>  accounts = accountRepository.findAll();

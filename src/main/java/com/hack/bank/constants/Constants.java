@@ -27,8 +27,14 @@ public class Constants {
             "Account information is invalid or transaction has been denied for your protection. Please try again.";
     public static final String SUCCESSFUL_TRANSACTION =
             "Account Debited Successfuly.";
+    public static final String INSUFFICIENT_BALANCE =
+            "Insufficient Balance.";
     public static final String CREATE_ACCOUNT_FAILED =
             "Error happened during creating new account";
+    public static final String SECURITY_CODE_INVALID =
+            "Security Code Invalid.";
+    public static final String TRANSACTION_NOT_FOUND =
+    "No Transactions found.";
     
     /********************************************/
     

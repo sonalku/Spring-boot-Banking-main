@@ -19,6 +19,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+import static com.hack.bank.constants.Constants.TRANSACTION_NOT_FOUND;
+
 @Service
 public class TransactionService {
     @Autowired
@@ -74,7 +76,7 @@ public class TransactionService {
     public ResponseEntity<List<String>> getTransactions(String accountNumber) {
         List<Transaction> lastTransactions = transactionRepository.findFirst10ByAccountNumberOrderByTransactionDateDesc(accountNumber);
         if (lastTransactions.isEmpty()) {
-            return new ResponseEntity<>(List.of("No Transactions found."), HttpStatus.OK);
+            return new ResponseEntity<>(List.of(TRANSACTION_NOT_FOUND), HttpStatus.OK);
         } else {
             List<String> transactions = new ArrayList<>();
             for (Iterator<Transaction> transaction = lastTransactions.iterator();
@@ -83,7 +85,6 @@ public class TransactionService {
                 String transactionString = "TRANSACTION NUMBER " + trans.getId() + " FOR AMOUNT " + trans.getAmount()
                         + ", HAS BEEN CREDITED TO " + trans.getBeneficiaryName() + ". DEBITED FROM ACCOUNT "
                         + trans.getAccountNumber() + ", ON " + convertToReadableDate(trans.getTransactionDate());
-                        //trans.getTransactionDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
                 transactions.add(transactionString);
             }
             return new ResponseEntity<>(transactions, HttpStatus.OK);

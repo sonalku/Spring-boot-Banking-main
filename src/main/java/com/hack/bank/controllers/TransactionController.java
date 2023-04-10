@@ -52,7 +52,6 @@ public class TransactionController {
     public ResponseEntity<?> makeTransfer(
             @Valid @RequestBody TransactionInput transactionInput) {
         if (InputValidator.isSearchTransactionValid(transactionInput)) {
-//            new Thread(() -> transactionService.makeTransfer(transactionInput));
             boolean isComplete = transactionService.makeTransfer(transactionInput);
             return new ResponseEntity<>(isComplete, HttpStatus.OK);
         } else {

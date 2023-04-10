@@ -41,16 +41,11 @@ public class AccountController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> checkAccountBalance(
-            // TODO In the future support searching by card number in addition to sort code and account number
             @Valid @RequestBody AccountInput accountInput) {
         LOGGER.debug("Triggered AccountRestController.accountInput");
 
-        // Validate input
         if (InputValidator.isSearchCriteriaValid(accountInput)) {
-            // Attempt to retrieve the account information
             Account account = accountService.getAccount(accountInput.getAccountNumber());
-
-            // Return the account details, or warn that no account was found for given input
             if (account == null) {
                 return new ResponseEntity<>(Constants.NO_ACCOUNT_FOUND, HttpStatus.OK);
             } else {
@@ -103,24 +98,6 @@ public class AccountController {
         return errors;
     }
 
-    //Show Transactions
-/*
-    @GetMapping(value = "/account/{inputValue}")
-    public ResponseEntity<List<String>> getAccountOption(
-            @RequestParam(name = "inputValue", required = true) String inputValue
-    ) {
-        LOGGER.debug("Triggered AccountController.getAccountOption");
-        switch (inputValue) {
-            case Constants.SHOW_TRANSACTION: return new ResponseEntity<List<String>>(Constants.TRANSACTION_LIST, HttpStatus.OK);
-            case Constants.SHOW_BALANCE: return new ResponseEntity<List<String>>(Constants.ACCOUNT_BALANCE,HttpStatus.OK);
-            case Constants.LAST_TRANSACTION : return new ResponseEntity<List<String>>(Constants.TRANSACTIONS,HttpStatus.OK);
-            default:
-                return new ResponseEntity<List<String>>(Constants.WRONG_INPUT_OPTIONS, HttpStatus.OK);
-        }
-
-    }
-*/
-
     @GetMapping(value = "/account/balance/")
     public ResponseEntity<List<String>> showAccountBalance(
             @RequestParam(name = "accountNumber", required = true) String accountNumber
@@ -150,7 +127,7 @@ public class AccountController {
         String output = accountService.sentMoney(accountNumber, amount, payee,securityCode);
         list.add(output);
 
-        if(output.equalsIgnoreCase("Amount sent succesfully"))
+        if(output.equalsIgnoreCase(SUCCESSFUL_TRANSACTION))
             return new ResponseEntity<List<String>>(list,HttpStatus.OK);
         else
             return new ResponseEntity<List<String>>(list,HttpStatus.NOT_FOUND);
@@ -161,7 +138,6 @@ public class AccountController {
             @Valid @RequestBody TransactionInput transactionInput) {
         ArrayList<String> output = new ArrayList();
         if (InputValidator.isSearchTransactionValid(transactionInput)) {
-//            new Thread(() -> transactionService.makeTransfer(transactionInput));
             boolean isComplete = accountService.makeTransfer(transactionInput);
             output.add(SUCCESSFUL_TRANSACTION);
             return new ResponseEntity<List<String>>(output, HttpStatus.OK);
